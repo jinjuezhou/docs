@@ -34,7 +34,9 @@ POST https://open.akool.com/api/open/v3/content/video/createbytranslate
 | data          | Object   | `{ "_id": "", "video_status": 1, "video": "" }` | \_id: Interface returns data, video_status: the status of video： 【1:queueing, 2:processing, 3:completed, 4:failed】, video: the url of Generated video |
 
 **Example**
+
 **Body**
+
 ```json
 {
 "url": "https://drz0f01yeq1cx.cloudfront.net/1710470596011-facebook.mp4",
@@ -59,6 +61,7 @@ curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createb
 "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 }'
 ```
+
 </CodeGroup>
 
 **Response**
@@ -90,65 +93,6 @@ curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createb
     "lipsync": true,
     "_id": "65f8180c24d9989e93dde3b6",
     "__v": 0
-  }
-}
-```
-
-### Get  Video Info Result
-
-```
-GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
-```
-
-**Request Headers**
-
-| **Parameter** | **Value**    | **Description**                                                                                                        |
-|---------------|--------------|------------------------------------------------------------------------------------------------------------------------|
-| Authorization | Bearer token | Your API Key used for request authorization. You can get from [here](https://open.akool.com/api/open/v3/getToken api). |
-
-**Query Attributes**
-
-| **Parameter**  | **Type** | **Value** | **Description**                                                                                                                                |
-|----------------|----------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| video_model_id | String   |           | video db id: You can get it based on the _id field returned by [this api](https://open.akool.com/api/open/v3/content/video/createbytranslate). |
-
-**Response Attributes**
-
-| **Parameter** | **Type** | **Value**                            | **Description**                                                                                                                                      |
-|---------------|----------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| code          | int      | 1000                                 | Interface returns business status code(1000:success)                                                                                                 |
-| msg           | String   | OK                                   | Interface returns status information                                                                                                                 |
-| data          | Object   | { video_status:1, _id:"", video:"" } | video_status: the status of video：【1:queueing, 2:processing, 3:completed, 4:failed】 video:  Generated video resource url _id: Interface returns data |
-
-**Example**
-
-**Request**
-
-```bash
-curl --location 'http://localhost:3007/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b' \
---header 'Authorization: Bearer token'
-```
-
-**Response**
-
-```json
-{
-  "code": 1000,
-  "msg": "OK",
-  "data": {
-    "faceswap_quality": 2,
-    "storage_loc": 1,
-    "_id": "64dd92c1f0b6684651e90e09",
-    "create_time": 1692242625334,
-    "uid": 378337,
-    "type": 2,
-    "from": 1,
-    "video_id": "0acfed62e24f4cfd8801c9e846347b1d",
-    "video_lock_duration": 7.91,
-    "deduction_lock_duration": 10,
-    "video_status": 2,
-    "external_video": "",
-    "video": ""
   }
 }
 ```
