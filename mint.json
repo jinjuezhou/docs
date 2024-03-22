@@ -59,15 +59,10 @@
       ]
     },
     {
-      "group": "Image Generate",
+      "group": "AI Tools Suite",
       "pages": [
-        "image-generate/usage"
-      ]
-    },
-    {
-      "group": "Video Translation",
-      "pages": [
-        "video-translation/usage"
+        "ai-tools-suite/image-generate",
+        "ai-tools-suite/video-translation"
       ]
     }
   ],
