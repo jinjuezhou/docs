@@ -53,6 +53,12 @@
       ]
     },
     {
+      "group": "Image Generate",
+      "pages": [
+        "image-generate/usage"
+      ]
+    },
+    {
       "group": "Video Translation",
       "pages": [
         "video-translation/authentication",

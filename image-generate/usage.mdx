@@ -1,0 +1,160 @@
+---
+title: 'Image Generate'
+description: 'Display inline code and code blocks'
+---
+
+
+### Text to image / Image to image
+
+```
+POST https://open.akool.com/api/open/v3/content/image/createbyimagine
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                             |
+|---------------|--------------|---------------------------------------------|
+| Authorization | Bearer token | Your API Key used for request authorization |
+
+**Body Attributes**
+
+| **Parameter** | **Type** | **Value** | **Description**                                                                                                                      |
+|---------------|----------|-----------|--------------------------------------------------------------------------------------------------------------------------------------|
+| prompt        | String   |           | Describe the information needed to generate the image                                                                                |
+| source_image  | String   |           | Need to generate the original image link of the image 【If you want to perform imageToImage operation you can pass in this parameter】 |
+| webhookUrl    | String   |           | Callback url address based on HTTP request                                                                                           |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                      | **Description**                                                                                                   |
+|---------------|----------|--------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                           | Interface returns business status code(1000:success)                                                              |
+| msg           | String   |                                | Interface returns status information                                                                              |
+| data          | Object   | `{ _id: "", image_status: 1 }` | _id: Interface returns data, image_status: the status of image: 【1:queueing, 2:processing, 3:completed, 4:failed】 |
+
+**Example**
+
+**Body**
+
+```json
+{
+    "prompt": "Sun Wukong is surrounded by heavenly soldiers and generals", // Describe the information needed to generate the image
+    "source_image": "https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png", // Need to generate the original image link of the image 【If you want to perform imageToImage operation you can pass in this parameter】
+    "webhookUrl":"http://localhost:3007/image/webhook" //  Callback url address based on HTTP request
+}
+```
+
+**Request**
+
+```
+curl --location 'https://open.akool.com/api/open/v3/content/image/createbyimagine' \
+--header 'Authorization: Bearer token' \
+--header 'Content-Type: application/json' \
+--data '{
+    "prompt": "Sun Wukong is surrounded by heavenly soldiers and generals",
+    "source_image": "https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png",
+    "webhookUrl":"http://localhost:3007/image/webhook"
+}
+'
+```
+
+**Response**
+
+```json
+{
+    "code": 1000,
+    "msg": "OK",
+    "data": {
+        "faceswap_quality": 2,
+        "deduction_credit": 2,
+        "buttons": [],
+        "used_buttons": [],
+        "upscaled_urls": [],
+        "_id": "64dd82eef0b6684651e90131",
+        "uid": 378337,
+        "create_time": 1692238574633,
+        "origin_prompt": "***",
+        "source_image": "https://***.cloudfront.net/1702436829534-4a813e6c-303e-48c7-8a4e-b915ae408b78-5034.png",
+        "prompt": "***** was a revolutionary leader who transformed *** into a powerful communist state.",
+        "type": 4,
+        "from": 1,
+        "image_status": 1  // the status of image： 【1:queueing, 2:processing,3:completed, 4:failed】
+    }
+}
+```
+
+### Generate 4K or variations
+
+```
+POST https://open.akool.com/api/open/v3/content/image/createbybutton
+```
+
+**Request Headers**
+
+| **Parameter**  | **Value**       | **Description**                                          |
+|----------------|-----------------|----------------------------------------------------------|
+| Authorization  | Bearer token    | Your API Key used for request authorization              |
+
+**Body Attributes**
+
+| **Parameter** | **Type** | **Value** | **Description**                                                                                                                                                                                                                                                                                                                                       |
+|---------------|----------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| _id           | String   |           | the image【\_id】 you had generated, you can got it from <https://open.akool.com/api/open/v3/content/image/createbyimagine>                                                                                                                                                                                                                             |
+| button        | String   |           | the type of operation you want to perform, You can get the field（display_buttons） value from <https://open.akool.com/api/open/v3/content/image/infobyid> 【U(1-4): Generate a single 4k image based on the corresponding serial number original image， V(1-4)：Generate a single variant image based on the corresponding serial number original image】 |
+| webhookUrl    | String   |           | Callback url address based on HTTP request                                                                                                                                                                                                                                                                                                            |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                                                          | **Description**                                                                                                                                                                                                                        |
+|---------------|----------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                                                               | Interface returns business status code(1000:success)                                                                                                                                                                                   |
+| msg           | String   |                                                                    | Interface returns status information                                                                                                                                                                                                   |
+| data          | Object   | `{_id:"",image_content_model_id: "",op_button: "",image_status:1}` | _id: Interface returns data image_content_model_id: the origin image【_id】 you had generated op_button: the type of operation you want to perform image_status:  the status of image： 【1:queueing, 2:processing, 3:completed, 4:failed】 |
+
+**Example**
+
+**Body**
+
+```json
+{
+    "_id": "65d3206b83ccf5ab7d46cdc6",  // the image【_id】 you had generated, you can got it from https://content.akool.com/api/v1/content/image/createbyimagine
+    "button": "U2",  // the type of operation you want to perform, You can get the field（display_buttons） value from https://content.akool.com/api/v1/content/image/infobyid 【U(1-4): Generate a single 4k image based on the corresponding serial number original image， V(1-4)：Generate a single variant image based on the corresponding serial number original image】
+    "webhookUrl":"http://localhost:3007/image/webhook" //  Callback url address based on HTTP request
+}
+```
+
+**Request**
+
+```bash
+curl --location 'http://localhost:3007/api/v3/content/image/createbybutton' \
+--header 'Authorization: Bearer token' \
+--header 'Content-Type: application/json' \
+--data '{
+    "_id": "65d3206b83ccf5ab7d46cdc6",
+    "button": "U2",
+    "webhookUrl":"http://localhost:3007/image/webhook"
+}'
+```
+
+**Response**
+
+```json
+{
+    "code": 1000,
+    "msg": "OK",
+    "data": {
+        "faceswap_quality": 2,
+        "deduction_credit": 2,
+        "buttons": [],
+        "used_buttons": [],
+        "upscaled_urls": [],
+        "_id": "6508292f16e5ba407d47d21b",
+        "image_content_model_id": "6508288416e5ba407d47d13f", // the origin image【_id】 you had generated
+        "create_time": 1695033647012,
+        "op_button": "U2",  // the type of operation you want to perform
+        "op_buttonMessageId": "kwZsk6elltno5Nt37VLj",
+        "image_status": 1,  // the status of image： 【1:queueing, 2:processing, 3:completed, 4:failed】
+        "from": 1
+    }
+}
+```
