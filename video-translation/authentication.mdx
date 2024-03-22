@@ -11,3 +11,54 @@ OpenAPI uses API keys for authentication. Get your API token from our API interf
 - First  you need to login to our website.
 - Then  click on the image icon in the upper right corner of the website,set the key pair (clientId 、clientSecret)used to access the api and save it.
 - Use the secret key pair just saved to send the api interface to obtain the access token.
+
+
+### API
+
+#### Get the token
+
+```
+POST https://open.akool.com/api/open/v3/getToken
+```
+
+**Body Attributes**
+
+| **Parameter** | **Description**                             |
+|---------------|---------------------------------------------|
+| clientId      | Used for request creation authorization     |
+| clientSecret  | Used for request creation authorization     |
+
+**Response Attributes**
+
+| **Parameter** | **Value** | **Description**                                      |
+|---------------|-----------|------------------------------------------------------|
+| code          | 1000      | Interface returns business status code(1000:success) |
+| token         |           | API token                                            |
+
+
+#### Example
+
+**Body**
+
+```json
+{
+  "clientId": "64db241f6d9e5c4bd136c187",
+  "clientSecret": "openapi.akool.com"
+}
+```
+
+**Request**
+
+```bash
+curl --location 'https://open.akool.com/api/open/v3/getToken' \
+--data '{"clientId": "64db241f6d9e5c4bd136c187","clientSecret": "openapi.akool.com"}'
+```
+
+**Response**
+
+```json
+{
+"code": 1000,
+"token": "xxxxxxxxxxxxxxxx"
+}
+```
