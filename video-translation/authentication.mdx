@@ -51,7 +51,7 @@ POST https://open.akool.com/api/open/v3/getToken
 
 <CodeGroup>
 
-```bash
+```bash cURL
 curl --location 'https://open.akool.com/api/open/v3/getToken' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -60,7 +60,7 @@ curl --location 'https://open.akool.com/api/open/v3/getToken' \
 }'
 ```
 
-```java
+```java Java
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("application/json");
@@ -73,7 +73,7 @@ Request request = new Request.Builder()
 Response response = client.newCall(request).execute();
 ```
 
-```javascript
+```javascript Javascript
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
