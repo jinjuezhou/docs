@@ -55,7 +55,8 @@
     {
       "group": "Video Translation",
       "pages": [
-        "video-translation/authentication"
+        "video-translation/authentication",
+        "video-translation/usage"
       ]
     }
   ],
