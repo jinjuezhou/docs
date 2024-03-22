@@ -114,3 +114,11 @@ GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_i
 | **Parameter**  | **Type** | **Value** | **Description**                                                                                                                                |
 |----------------|----------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | video_model_id | String   | NULL      | video db id: You can get it based on the _id field returned by [this api](https://open.akool.com/api/open/v3/content/video/createbytranslate). |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                            | **Description**                                                                                                                                      |
+|---------------|----------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                                 | Interface returns business status code(1000:success)                                                                                                 |
+| msg           | String   | OK                                   | Interface returns status information                                                                                                                 |
+| data          | Object   | { video_status:1, _id:"", video:"" } | video_status: the status of video：【1:queueing, 2:processing, 3:completed, 4:failed】 video:  Generated video resource url _id: Interface returns data |
