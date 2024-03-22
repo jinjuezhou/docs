@@ -46,7 +46,9 @@ POST https://open.akool.com/api/open/v3/content/video/createbytranslate
 
 **Request**
 
-```bash
+<CodeGroup>
+
+```bash cURL
 curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createbytranslate' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
@@ -57,6 +59,7 @@ curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createb
 "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 }'
 ```
+</CodeGroup>
 
 **Response**
 
@@ -143,9 +146,9 @@ curl --location 'http://localhost:3007/api/v3/content/video/infobymodelid?video_
     "video_id": "0acfed62e24f4cfd8801c9e846347b1d",
     "video_lock_duration": 7.91,
     "deduction_lock_duration": 10,
-    "video_status": 2, // current status of video： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the video translation details.）】
+    "video_status": 2,
     "external_video": "",
-    "video": "" // Generated video resource url
+    "video": ""
   }
 }
 ```
