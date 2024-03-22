@@ -95,31 +95,6 @@ fetch("https://open.akool.com/api/open/v3/getToken", requestOptions)
   .catch((error) => console.error(error));
 ```
 
-```nodejs Nodejs
-    const axios = require('axios');
-    let data = JSON.stringify({
-    "clientId": "64db241f6d9e5c4bd136c187",
-    "clientSecret": "openapi.akool.com"
-});
-
-    let config = {
-    method: 'post',
-    maxBodyLength: Infinity,
-    url: 'https://open.akool.com/api/open/v3/getToken',
-    headers: {
-    'Content-Type': 'application/json'
-},
-    data : data
-};
-
-    axios.request(config)
-    .then((response) => {
-    console.log(JSON.stringify(response.data));
-})
-    .catch((error) => {
-    console.log(error);
-});
-```
 
 </CodeGroup>
 

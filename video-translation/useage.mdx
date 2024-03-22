@@ -1,0 +1,60 @@
+---
+title: 'Usage'
+description: 'Display inline code and code blocks'
+icon: 'lock'
+---
+
+
+### Create video translation
+
+```
+POST https://open.akool.com/api/open/v3/content/video/createbytranslate
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                        |
+|---------------|--------------|------------------------------------------------------------------------------------------------------------------------|
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [here](https://open.akool.com/api/open/v3/getToken api). |
+
+**Body Attributes**
+
+| **Parameter** | **Type** | **Value**  | **Description**                                                              |
+|---------------|----------|------------|------------------------------------------------------------------------------|
+| url           | String   |            | The video url address you want to translate.                                 |
+| language      | String   |            | The language you want to translate into.                                     |
+| lipsync       | Boolean  | true/false | Get synchronized mouth movements with the audio track in a translated video. |
+| webhookUrl    | String   |            | Callback url address based on HTTP request.                                  |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                                       | **Description**                                                                                                                                       |
+|---------------|----------|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                                            | Interface returns business status code(1000:success)                                                                                                  |
+| msg           | String   |                                                 | Interface returns status information                                                                                                                  |
+| data          | Object   | `{ "_id": "", "video_status": 1, "video": "" }` | \_id: Interface returns data, video_status: the status of video： 【1:queueing, 2:processing, 3:completed, 4:failed】, video: the url of Generated video |
+
+**Example**
+**Body**
+```json
+{
+"url": "https://drz0f01yeq1cx.cloudfront.net/1710470596011-facebook.mp4", // The video address you want to translate
+"language": "hi", // The language you want to translate into
+"lipsync": true, // Get synchronized mouth movements with the audio track in a translated video.
+"webhookUrl": "http://localhost:3007/api/open/v3/test/webhook" // Callback url address based on HTTP request
+}
+```
+
+**Request**
+
+```bash
+curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createbytranslate' \
+--header 'Authorization: Bearer token' \
+--header 'Content-Type: application/json' \
+--data '{
+"url": "https://drz0f01yeq1cx.cloudfront.net/1710470596011-facebook.mp4",
+"language": "hi",
+"lipsync": true,
+"webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
+}'
+```
