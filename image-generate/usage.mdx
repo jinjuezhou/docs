@@ -158,3 +158,64 @@ curl --location 'http://localhost:3007/api/v3/content/image/createbybutton' \
     }
 }
 ```
+
+### Get  Image Result image info
+
+```
+GET https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217
+```
+
+**Request Headers**
+
+| **Parameter**  | **Value**       | **Description**                                          |
+|----------------|-----------------|----------------------------------------------------------|
+| Authorization  | Bearer token    | Your API Key used for request authorization              |
+
+**Query Attributes**
+
+| **Parameter**  | **Type** | **Value** | **Description**                                                                                                                                                                                          |
+|----------------|----------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| image_model_id | String   |           | image db id：You can get it based on the \_id field returned by [https://open.akool.com/api/open/v3/content/image/createbyimagine](https://open.akool.com/api/open/v3/content/image/createbyimagine) api. |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                          | **Description**                                                                                                                                        |
+|---------------|----------|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                               | Interface returns business status code(1000:success)                                                                                                   |
+| msg           | String   |                                    | Interface returns status information                                                                                                                   |
+| data          | Object   | `{image_status:1,_id:"",image:""}` | image_status:  the status of image： 【1:queueing, 2:processing, 3:completed, 4:failed】 image: Image result after processing _id: Interface returns data |
+
+**Example**
+
+**Request**
+
+```bash
+curl --location 'https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217' \
+--header 'Authorization: Bearer token'
+```
+
+**Response**
+
+```json
+{
+    "code": 1000,
+    "msg": "OK",
+    "data": {
+        "faceswap_quality": 2,
+        "deduction_credit": 2,
+        "buttons": [],
+        "used_buttons": [],
+        "upscaled_urls": [],
+        "_id": "64dd838cf0b6684651e90217",
+        "create_time": 1692238732982,
+        "uid": 378337,
+        "type": 3,
+        "image_status": 3,  // the status of image：【1：queueing， 2：processing，3：completed，4：failed】
+        "modify_image": "https://***.cloudfront.net/1692238716135-a48291ff-c033-4027-b98c-95ceddaa4cbf-0947.png",
+        "bg_color": "#BCE3E3",
+        "bg_image_url": "",
+        "image": "https://***.cloudfront.net/1692238732650-8bddef60-d916-45f1-a042-66fd5de6d03a-6358.png"  // Image result after processing
+    }
+}
+```
+
