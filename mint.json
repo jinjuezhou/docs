@@ -63,7 +63,8 @@
       "pages": [
         "ai-tools-suite/image-generate",
         "ai-tools-suite/video-translation",
-        "ai-tools-suite/talking-photo"
+        "ai-tools-suite/talking-photo",
+        "ai-tools-suite/faceswap"
       ]
     }
   ],
