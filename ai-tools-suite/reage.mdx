@@ -1,0 +1,33 @@
+---
+title: 'Reage'
+description: 'Display inline code and code blocks'
+---
+
+### POST Image Reage
+
+```
+POST https://open.akool.com/api/open/v3/faceswap/highquality/imgreage
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                             |
+|---------------|--------------|---------------------------------------------|
+| Authorization | Bearer token | Your API Key used for request authorization |
+
+**Body Attributes**
+
+| Parameter   | Type   | Value                 | Description                                                                                                                                                                                                                                                                                                                                                                         |
+|-------------|--------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| targetImage | Array  | `[{path:"",opts:""}]` | Replacement target image information(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in target images. opts: Key information of the face detected in the target image【You can get it through the face https://sg3.akool.com/detect API, You can get the landmarks_str value returned by the api interface as the value of opts) |
+| face_reage  | Int    | [-30, 30]             | Reage ranges                                                                                                                                                                                                                                                                                                                                                                        |
+| modifyImage | String |                       | Modify the link address of the image                                                                                                                                                                                                                                                                                                                                                |
+| webhookUrl  | String |                       | Callback url address based on HTTP request                                                                                                                                                                                                                                                                                                                                          |
+
+**Response Attributes**
+
+| Parameter | Type   | Value                         | Description                                                                             |
+|-----------|--------|-------------------------------|-----------------------------------------------------------------------------------------|
+| code      | int    | 1000                          | Interface returns business status code(1000:success)                                    |
+| msg       | String |                               | Interface returns status information                                                    |
+| data      | Object | `{_id:"",url: "",job_id: ""}` | _id: Interface returns data url: faceswwap result url job_id: Task processing unique id |
