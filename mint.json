@@ -62,7 +62,8 @@
       "group": "AI Tools Suite",
       "pages": [
         "ai-tools-suite/image-generate",
-        "ai-tools-suite/video-translation"
+        "ai-tools-suite/video-translation",
+        "ai-tools-suite/talking-photo"
       ]
     }
   ],
