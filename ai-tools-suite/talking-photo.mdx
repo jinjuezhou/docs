@@ -137,3 +137,193 @@ curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createa
 ```
 
 ### Get Audio Info Result
+
+```
+GET https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7
+```
+
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                               |
+|---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+
+**Query Attributes**
+
+| **Parameter**  | **Type** | **Value** | **Description**                                                                                                                  |
+|----------------|----------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
+| audio_model_id | String   |           | audio db id：You can get it based on the \_id field returned by https://open.akool.com/api/open/v3/content/video/createaudio api. |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**            | **Description**                                                                                           |
+|---------------|----------|----------------------|-----------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                 | Interface returns business status code(1000:success)                                                      |
+| msg           | String   | OK                   | Interface returns status information                                                                      |
+| data          | Object   | `{status:1,_id:"",}` | status:  the status of audio：【1:queueing, 2:processing, 3:completed, 4:failed】_id: Interface returns data |
+
+**Example**
+
+**Request**
+
+```bash
+curl --location 'https://contenttest.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7' \
+--header 'Authorization: Bearer token'
+```
+
+**Response**
+
+```json
+{
+    "code": 1000,
+    "msg": "OK",
+    "data": {
+        "_id": "65f8017f56559aa67f0ecde7",
+        "create_time": 1710752127995,
+        "uid": 101690,
+        "from": 3,
+        "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
+        "rate": "100%",
+        "voice_model_id": "65e980d7af040969db5be854",
+        "url": "https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3",
+        "status": 3,   // current status of audio： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the audio details.）】
+        "__v": 0
+    }
+}
+```
+
+
+### Talking Photo
+
+```
+POST https://open.akool.com/api/open/v3/content/video/createbytalkingphoto
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                               |
+|---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+
+**Body Attributes**
+
+| Parameter         | Type   | Value | Description                                |
+|-------------------|--------|-------|--------------------------------------------|
+| talking_photo_url | String |       | resource address of the talking picture    |
+| audio_url         | String |       | resource address of the talking audio      |
+| webhookUrl        | String |       | Callback url address based on HTTP request |
+
+**Response Attributes**
+
+| Parameter | Type   | Value                                    | Description                                                                                                                                       |
+|-----------|--------|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| code      | int    | 1000                                     | Interface returns business status code (1000:success)                                                                                             |
+| msg       | String |                                          | Interface returns status information                                                                                                              |
+| data      | Object | `{  _id:"",  video_status:3, video:"" }` | `_id`: Interface returns data status: the status of video: [1:queueing, 2:processing, 3:completed, 4:failed], `video`: the url of Generated video |
+
+**Example**
+
+**Body**
+
+```json
+{
+    "talking_photo_url":"https://drz0f01yeq1cx.cloudfront.net/1688098804494-e7ca71c3-4266-4ee4-bcbb-ddd1ea490e75-9907.jpg",
+    "audio_url":"https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3"
+}
+```
+
+**Request**
+
+```bash
+curl --location 'https://open.akool.com/api/open/v3/content/video/createbytalkingphoto' \
+--header 'Authorization: Bearer token' \
+--data '{
+    "talking_photo_url":"https://drz0f01yeq1cx.cloudfront.net/1688098804494-e7ca71c3-4266-4ee4-bcbb-ddd1ea490e75-9907.jpg",
+     "audio_url":"https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3"
+}'
+```
+
+```json
+{
+    "code": 1000,   // API code
+    "msg": "OK",
+    "data": {
+        "faceswap_quality": 2,
+        "storage_loc": 1,
+        "_id": "64dd90f9f0b6684651e90d60",
+        "create_time": 1692242169057,
+        "uid": 378337,
+        "type": 5,
+        "from": 2,
+        "video_lock_duration": 0.8,
+        "deduction_lock_duration": 10,
+        "external_video": "",
+        "talking_photo": "https://***.cloudfront.net/1692242161763-4fb8c3c2-018b-4b84-82e9-413c81f26b3a-6613.jpeg",
+        "video": "",    // the url of Generated video
+        "__v": 0,
+        "video_status": 1   // current status of video： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the talkingphoto details.）】
+    }
+}
+```
+
+### Get Video Info Result
+
+```
+GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
+```
+
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                               |
+|---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+
+
+**Query Attributes**
+
+| **Parameter**  | **Type** | **Value** | **Description**                                                                                                                          |
+|----------------|----------|-----------|------------------------------------------------------------------------------------------------------------------------------------------|
+| video_model_id | String   |           | video db id：You can get it based on the _id field returned by https://open.akool.com/api/open/v3/content/video/createbytalkingphoto api. |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                              | **Description**                                                                                                                                              |
+|---------------|----------|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                                   | Interface returns business status code (1000:success)                                                                                                        |
+| msg           | String   | OK                                     | Interface returns status information                                                                                                                         |
+| data          | Object   | `{ video_status:1, _id:"", video:"" }` | `video_status`: the status of video: [1:queueing, 2:processing, 3:completed, 4:failed], `video`: Generated video resource url, `_id`: Interface returns data |
+
+**Example**
+
+**Request**
+
+```bash
+curl --location 'https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217' \
+--header 'Authorization: Bearer token'
+```
+
+**Request**
+
+```json
+{
+    "code": 1000,
+    "msg": "OK",
+    "data": {
+        "faceswap_quality": 2,
+        "storage_loc": 1,
+        "_id": "64dd92c1f0b6684651e90e09",
+        "create_time": 1692242625334,
+        "uid": 378337,
+        "type": 2,
+        "from": 1,
+        "video_id": "0acfed62e24f4cfd8801c9e846347b1d",
+        "video_lock_duration": 7.91,
+        "deduction_lock_duration": 10,
+        "video_status": 2,  // current status of video： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the talkingphoto details.）】
+        "external_video": "",
+        "video": ""  //  Generated video resource url
+    }
+}
+```
