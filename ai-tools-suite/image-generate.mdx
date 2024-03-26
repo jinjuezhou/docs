@@ -336,7 +336,7 @@ GET https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_i
 
 | **Parameter**  | **Type** | **Value** | **Description**                                                                                                                                                                                          |
 |----------------|----------|-----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| image_model_id | String   |           | image db id：You can get it based on the \_id field returned by [https://open.akool.com/api/open/v3/content/image/createbyimagine](https://open.akool.com/api/open/v3/content/image/createbyimagine) api. |
+| image_model_id | String   |           | image db id：You can get it based on the `_id` field returned by [https://open.akool.com/api/open/v3/content/image/createbyimagine](https://open.akool.com/api/open/v3/content/image/createbyimagine) api. |
 
 **Response Attributes**
 
@@ -350,10 +350,70 @@ GET https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_i
 
 **Request**
 
-```bash
+<CodeGroup>
+
+```bash cURL
 curl --location 'https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217' \
 --header 'Authorization: Bearer token'
 ```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("text/plain");
+RequestBody body = RequestBody.create(mediaType, "");
+Request request = new Request.Builder()
+  .url("https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217")
+  .method("GET", body)
+  .addHeader("Authorization", "Bearer token")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript 
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer token");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+fetch("https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP 
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => 'Bearer token'
+];
+$request = new Request('GET', 'https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+
+url = "https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer token'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
 
 **Response**
 
