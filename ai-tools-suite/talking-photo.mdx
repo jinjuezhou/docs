@@ -281,16 +281,16 @@ GET https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_m
 
 **Query Attributes**
 
-| **Parameter**  | **Type** | **Value** | **Description**                                                                                                                  |
-|----------------|----------|-----------|----------------------------------------------------------------------------------------------------------------------------------|
+| **Parameter**  | **Type** | **Value** | **Description**                                                                                                                   |
+|----------------|----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
 | audio_model_id | String   |           | audio db id：You can get it based on the `_id` field returned by https://open.akool.com/api/open/v3/content/video/createaudio api. |
 
 **Response Attributes**
 
-| **Parameter** | **Type** | **Value**            | **Description**                                                                                           |
-|---------------|----------|----------------------|-----------------------------------------------------------------------------------------------------------|
-| code          | int      | 1000                 | Interface returns business status code(1000:success)                                                      |
-| msg           | String   | OK                   | Interface returns status information                                                                      |
+| **Parameter** | **Type** | **Value**            | **Description**                                                                                             |
+|---------------|----------|----------------------|-------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                 | Interface returns business status code(1000:success)                                                        |
+| msg           | String   | OK                   | Interface returns status information                                                                        |
 | data          | Object   | `{status:1,_id:"",}` | status:  the status of audio：【1:queueing, 2:processing, 3:completed, 4:failed】`_id`: Interface returns data |
 
 **Example**
