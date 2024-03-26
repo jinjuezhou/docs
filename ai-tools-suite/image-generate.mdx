@@ -46,7 +46,10 @@ POST https://open.akool.com/api/open/v3/content/image/createbyimagine
 
 **Request**
 
-```
+<CodeGroup>
+    
+
+```bash cURL
 curl --location 'https://open.akool.com/api/open/v3/content/image/createbyimagine' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
@@ -58,6 +61,84 @@ curl --location 'https://open.akool.com/api/open/v3/content/image/createbyimagin
 '
 ```
 
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"prompt\": \"Sun Wukong is surrounded by heavenly soldiers and generals\", \n    \"source_image\": \"https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png\", \n    \"webhookUrl\":\"http://localhost:3007/image/webhook\" \n}\n");
+Request request = new Request.Builder()
+  .url("https://open.akool.com/api/open/v3/content/image/createbyimagine")
+  .method("POST", body)
+  .addHeader("Authorization", "Bearer token")
+  .addHeader("Content-Type", "application/json")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```javascript Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer token");
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "prompt": "Sun Wukong is surrounded by heavenly soldiers and generals",
+  "source_image": "https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png",
+  "webhookUrl": "http://localhost:3007/image/webhook"
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("https://open.akool.com/api/open/v3/content/image/createbyimagine", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP 
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => 'Bearer token',
+  'Content-Type' => 'application/json'
+];
+$body = '{
+  "prompt": "Sun Wukong is surrounded by heavenly soldiers and generals",
+  "source_image": "https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png",
+  "webhookUrl": "http://localhost:3007/image/webhook"
+}';
+$request = new Request('POST', 'https://open.akool.com/api/open/v3/content/image/createbyimagine', $headers, $body);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python 
+import requests
+import json
+
+url = "https://open.akool.com/api/open/v3/content/image/createbyimagine"
+
+payload = json.dumps({
+  "prompt": "Sun Wukong is surrounded by heavenly soldiers and generals",
+  "source_image": "https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png",
+  "webhookUrl": "http://localhost:3007/image/webhook"
+})
+headers = {
+  'Authorization': 'Bearer token',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
 **Response**
 
 ```json
@@ -66,18 +147,18 @@ curl --location 'https://open.akool.com/api/open/v3/content/image/createbyimagin
     "msg": "OK",
     "data": {
         "faceswap_quality": 2,
-        "deduction_credit": 2,
-        "buttons": [],
-        "used_buttons": [],
-        "upscaled_urls": [],
+        "deduction_credit": 2, 
+        "buttons": [],  
+        "used_buttons": [], 
+        "upscaled_urls": [],    
         "_id": "64dd82eef0b6684651e90131",
-        "uid": 378337,
-        "create_time": 1692238574633,
-        "origin_prompt": "***",
-        "source_image": "https://***.cloudfront.net/1702436829534-4a813e6c-303e-48c7-8a4e-b915ae408b78-5034.png",
-        "prompt": "***** was a revolutionary leader who transformed *** into a powerful communist state.",
+        "uid": 378337,  
+        "create_time": 1692238574633, 
+        "origin_prompt": "***", 
+        "source_image": "https://***.cloudfront.net/1702436829534-4a813e6c-303e-48c7-8a4e-b915ae408b78-5034.png", 
+        "prompt": "***** was a revolutionary leader who transformed *** into a powerful communist state.",    
         "type": 4,
-        "from": 1,
+        "from": 1,  
         "image_status": 1  // the status of image： 【1:queueing, 2:processing,3:completed, 4:failed】
     }
 }
@@ -99,17 +180,17 @@ POST https://open.akool.com/api/open/v3/content/image/createbybutton
 
 | **Parameter** | **Type** | **Value** | **Description**                                                                                                                                                                                                                                                                                                                                     |
 |---------------|----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| _id           | String   |           | the image【\_id】 you had generated, you can got it from https://open.akool.com/api/open/v3/content/image/createbyimagine                                                                                                                                                                                                                             |
+| _id           | String   |           | the image`_id` you had generated, you can got it from https://open.akool.com/api/open/v3/content/image/createbyimagine                                                                                                                                                                                                                              |
 | button        | String   |           | the type of operation you want to perform, You can get the field（display_buttons） value from https://open.akool.com/api/open/v3/content/image/infobyid 【U(1-4): Generate a single 4k image based on the corresponding serial number original image， V(1-4)：Generate a single variant image based on the corresponding serial number original image】 |
 | webhookUrl    | String   |           | Callback url address based on HTTP request                                                                                                                                                                                                                                                                                                          |
 
 **Response Attributes**
 
-| **Parameter** | **Type** | **Value**                                                          | **Description**                                                                                                                                                                                                                        |
-|---------------|----------|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| code          | int      | 1000                                                               | Interface returns business status code(1000:success)                                                                                                                                                                                   |
-| msg           | String   |                                                                    | Interface returns status information                                                                                                                                                                                                   |
-| data          | Object   | `{_id:"",image_content_model_id: "",op_button: "",image_status:1}` | _id: Interface returns data image_content_model_id: the origin image【_id】 you had generated op_button: the type of operation you want to perform image_status:  the status of image： 【1:queueing, 2:processing, 3:completed, 4:failed】 |
+| **Parameter** | **Type** | **Value**                                                          | **Description**                                                                                                                                                                                                                           |
+|---------------|----------|--------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                                                               | Interface returns business status code(1000:success)                                                                                                                                                                                      |
+| msg           | String   |                                                                    | Interface returns status information                                                                                                                                                                                                      |
+| data          | Object   | `{_id:"",image_content_model_id: "",op_button: "",image_status:1}` | `_id`: Interface returns data image_content_model_id: the origin image `_id` you had generated op_button: the type of operation you want to perform image_status:  the status of image： 【1:queueing, 2:processing, 3:completed, 4:failed】 |
 
 **Example**
 
@@ -125,7 +206,9 @@ POST https://open.akool.com/api/open/v3/content/image/createbybutton
 
 **Request**
 
-```bash
+<CodeGroup>
+
+```bash cURL
 curl --location 'http://localhost:3007/api/v3/content/image/createbybutton' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
@@ -135,6 +218,84 @@ curl --location 'http://localhost:3007/api/v3/content/image/createbybutton' \
     "webhookUrl":"http://localhost:3007/image/webhook"
 }'
 ```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"_id\": \"65d3206b83ccf5ab7d46cdc6\",  \n    \"button\": \"U2\",  \n    \"webhookUrl\":\"http://localhost:3007/image/webhook\" \n}");
+Request request = new Request.Builder()
+  .url("http://localhost:3007/api/v3/content/image/createbybutton")
+  .method("POST", body)
+  .addHeader("Authorization", "Bearer token")
+  .addHeader("Content-Type", "application/json")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer token");
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "_id": "65d3206b83ccf5ab7d46cdc6",
+  "button": "U2",
+  "webhookUrl": "http://localhost:3007/image/webhook"
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:3007/api/v3/content/image/createbybutton", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => 'Bearer token',
+  'Content-Type' => 'application/json'
+];
+$body = '{
+  "_id": "65d3206b83ccf5ab7d46cdc6",
+  "button": "U2",
+  "webhookUrl": "http://localhost:3007/image/webhook"
+}';
+$request = new Request('POST', 'http://localhost:3007/api/v3/content/image/createbybutton', $headers, $body);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+import json
+
+url = "http://localhost:3007/api/v3/content/image/createbybutton"
+
+payload = json.dumps({
+  "_id": "65d3206b83ccf5ab7d46cdc6",
+  "button": "U2",
+  "webhookUrl": "http://localhost:3007/image/webhook"
+})
+headers = {
+  'Authorization': 'Bearer token',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
 
 **Response**
 

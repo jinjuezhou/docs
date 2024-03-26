@@ -94,6 +94,39 @@ fetch("https://open.akool.com/api/open/v3/getToken", requestOptions)
   .catch((error) => console.error(error));
 ```
 
+```PHP PHP
+<?php
+$client = new Client();
+$headers = [
+  'Content-Type' => 'application/json'
+];
+$body = '{
+  "clientId": "64db241f6d9e5c4bd136c187",
+  "clientSecret": "openapi.akool.com"
+}';
+$request = new Request('POST', 'https://open.akool.com/api/open/v3/getToken', $headers, $body);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+import json
+
+url = "https://open.akool.com/api/open/v3/getToken"
+
+payload = json.dumps({
+  "clientId": "64db241f6d9e5c4bd136c187",
+  "clientSecret": "openapi.akool.com"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
 
 </CodeGroup>
 
