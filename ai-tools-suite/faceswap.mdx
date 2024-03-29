@@ -64,26 +64,26 @@ POST https://open.akool.com/api/open/v3/faceswap/highquality/specifyimage
   
 
 ```bash cURL
-curl --location 'http://open.akool.com/api/v3/faceswap/highquality/specifyimage' \
---header 'Authorization: Bearer token' \
---header 'Content-Type: application/json' \
---data '{
-    "sourceImage": [
-        {
-            "path": "https://d21ksh0k4smeql.cloudfront.net/crop_1694593694387-4562-0-1694593694575-0526.png",
-            "opts": "262,175:363,175:313,215:272,279"
-        }
-    ],
-    "targetImage": [
-        {
-            "path": "https://d21ksh0k4smeql.cloudfront.net/crop_1705462509874-9254-0-1705462510015-9261.png",
-            "opts": "239,364:386,366:317,472:266,539"
-        }
-    ],
-    "face_enhance": 0,
-    "modifyImage": "https://d21ksh0k4smeql.cloudfront.net/bdd1c994c4cd7a58926088ae8a479168-1705462506461-1966.jpeg",
-    "webhookUrl":"http://localhost:3007/api/webhook"
-}'
+curl -X POST --location "https://open.akool.com/api/open/v3/faceswap/highquality/specifyimage" \
+    -H "Authorization: Bearer token" \
+    -H "Content-Type: application/json" \
+    -d '{
+          "sourceImage": [
+            {
+              "path": "https://d21ksh0k4smeql.cloudfront.net/crop_1694593694387-4562-0-1694593694575-0526.png",
+              "opts": "262,175:363,175:313,215:272,279"
+            }
+          ],
+          "targetImage": [
+            {
+              "path": "https://d21ksh0k4smeql.cloudfront.net/crop_1705462509874-9254-0-1705462510015-9261.png",
+              "opts": "239,364:386,366:317,472:266,539"
+            }
+          ],
+          "face_enhance": 0,
+          "modifyImage": "https://d21ksh0k4smeql.cloudfront.net/bdd1c994c4cd7a58926088ae8a479168-1705462506461-1966.jpeg",
+          "webhookUrl": "http://localhost:3007/api/webhook"
+        }'
 ```
 
 ```java Java
@@ -92,7 +92,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\n    \"sourceImage\": [    \n        {\n            \"path\": \"https://d21ksh0k4smeql.cloudfront.net/crop_1694593694387-4562-0-1694593694575-0526.png\", \n            \"opts\": \"262,175:363,175:313,215:272,279\" \n        }\n    ],\n    \"targetImage\": [    \n        {\n            \"path\": \"https://d21ksh0k4smeql.cloudfront.net/crop_1705462509874-9254-0-1705462510015-9261.png\",  \n            \"opts\": \"239,364:386,366:317,472:266,539\"   \n        }\n    ],\n    \"face_enhance\": 0,  \n    \"modifyImage\": \"https://d21ksh0k4smeql.cloudfront.net/bdd1c994c4cd7a58926088ae8a479168-1705462506461-1966.jpeg\", \n    \"webhookUrl\":\"http://localhost:3007/api/webhook\" \n}");
 Request request = new Request.Builder()
-  .url("http://open.akool.com/api/v3/faceswap/highquality/specifyimage")
+  .url("https://open.akool.com/api/open/v3/faceswap/highquality/specifyimage")
   .method("POST", body)
   .addHeader("Authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -130,7 +130,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://open.akool.com/api/v3/faceswap/highquality/specifyimage", requestOptions)
+fetch("https://open.akool.com/api/open/v3/faceswap/highquality/specifyimage", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -160,7 +160,7 @@ $body = '{
   "modifyImage": "https://d21ksh0k4smeql.cloudfront.net/bdd1c994c4cd7a58926088ae8a479168-1705462506461-1966.jpeg",
   "webhookUrl": "http://localhost:3007/api/webhook"
 }';
-$request = new Request('POST', 'http://open.akool.com/api/v3/faceswap/highquality/specifyimage', $headers, $body);
+$request = new Request('POST', 'https://open.akool.com/api/open/v3/faceswap/highquality/specifyimage', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -169,7 +169,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "http://open.akool.com/api/v3/faceswap/highquality/specifyimage"
+url = "https://open.akool.com/api/open/v3/faceswap/highquality/specifyimage"
 
 payload = json.dumps({
   "sourceImage": [
