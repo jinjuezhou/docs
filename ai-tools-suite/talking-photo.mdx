@@ -4,7 +4,7 @@ description: 'Display inline code and code blocks'
 ---
 
 
-### Get  Voice List Result
+### Get Voice List Result
 
 ```
 GET https://open.akool.com/api/open/v3/voice/list
@@ -32,7 +32,7 @@ GET https://open.akool.com/api/open/v3/voice/list
 
 ```bash cURL
 curl --location 'https://open.akool.com/api/open/v3/voice/list' \
---header 'Authorization: {{Authorization}}'
+--header 'Authorization: Bearer {{Authorization}}'
 ```
 
 ```java Java
@@ -43,14 +43,14 @@ RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
   .url("https://open.akool.com/api/open/v3/voice/list")
   .method("GET", body)
-  .addHeader("Authorization", "{{Authorization}}")
+  .addHeader("Authorization", "Bearer {{Authorization}}")
   .build();
 Response response = client.newCall(request).execute();
 ```
 
 ```js Javascript
 const myHeaders = new Headers();
-myHeaders.append("Authorization", "{{Authorization}}");
+myHeaders.append("Authorization", "Bearer {{Authorization}}");
 
 const requestOptions = {
   method: "GET",
@@ -82,7 +82,7 @@ url = "https://open.akool.com/api/open/v3/voice/list"
 
 payload = {}
 headers = {
-  'Authorization': '{{Authorization}}'
+  'Authorization': 'Bearer {{Authorization}}'
 }
 
 response = requests.request("GET", url, headers=headers, data=payload)
@@ -165,9 +165,9 @@ POST https://open.akool.com/api/open/v3/content/video/createaudio
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createaudio' \
+curl --location 'https://open.akool.com/api/open/v3/content/video/createaudio' \
 --header 'authorization: Bearer token' \
---header 'Content-Type: text/plain' \
+--header 'Content-Type: application/json' \
 --data '{
     "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
     "voice_id": "LcfcDJNUP1GQjkzn1xUU",
@@ -178,13 +178,13 @@ curl --location 'https://contenttest.akool.com/api/open/v3/content/video/createa
 ```java Java 
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
-MediaType mediaType = MediaType.parse("text/plain");
-RequestBody body = RequestBody.create(mediaType, "{\n    \"input_text\": \"Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from\",\n    \"voice_id\": \"LcfcDJNUP1GQjkzn1xUU\",\n    \"rate\": \"100%\"\n}");
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\r\n    \"input_text\": \"Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from\",\r\n    \"voice_id\": \"LcfcDJNUP1GQjkzn1xUU\",\r\n    \"rate\": \"100%\"\r\n}");
 Request request = new Request.Builder()
-  .url("https://contenttest.akool.com/api/open/v3/content/video/createaudio")
+  .url("https://open.akool.com/api/open/v3/content/video/createaudio")
   .method("POST", body)
   .addHeader("authorization", "Bearer token")
-  .addHeader("Content-Type", "text/plain")
+  .addHeader("Content-Type", "application/json")
   .build();
 Response response = client.newCall(request).execute();
 ```
@@ -192,9 +192,13 @@ Response response = client.newCall(request).execute();
 ```js Javascript 
 const myHeaders = new Headers();
 myHeaders.append("authorization", "Bearer token");
-myHeaders.append("Content-Type", "text/plain");
+myHeaders.append("Content-Type", "application/json");
 
-const raw = "{\n    \"input_text\": \"Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from\",\n    \"voice_id\": \"LcfcDJNUP1GQjkzn1xUU\",\n    \"rate\": \"100%\"\n}";
+const raw = JSON.stringify({
+  "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
+  "voice_id": "LcfcDJNUP1GQjkzn1xUU",
+  "rate": "100%"
+});
 
 const requestOptions = {
   method: "POST",
@@ -203,7 +207,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://contenttest.akool.com/api/open/v3/content/video/createaudio", requestOptions)
+fetch("https://open.akool.com/api/open/v3/content/video/createaudio", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -214,27 +218,33 @@ fetch("https://contenttest.akool.com/api/open/v3/content/video/createaudio", req
 $client = new Client();
 $headers = [
   'authorization' => 'Bearer token',
-  'Content-Type' => 'text/plain'
+  'Content-Type' => 'application/json'
 ];
 $body = '{
-    "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
-    "voice_id": "LcfcDJNUP1GQjkzn1xUU",
-    "rate": "100%"
+  "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
+  "voice_id": "LcfcDJNUP1GQjkzn1xUU",
+  "rate": "100%"
 }';
-$request = new Request('POST', 'https://contenttest.akool.com/api/open/v3/content/video/createaudio', $headers, $body);
+$request = new Request('POST', 'https://open.akool.com/api/open/v3/content/video/createaudio', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
+
 ```
 
 ```python Python 
 import requests
+import json
 
-url = "https://contenttest.akool.com/api/open/v3/content/video/createaudio"
+url = "https://open.akool.com/api/open/v3/content/video/createaudio"
 
-payload = "{\n    \"input_text\": \"Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from\",\n    \"voice_id\": \"LcfcDJNUP1GQjkzn1xUU\",\n    \"rate\": \"100%\"\n}"
+payload = json.dumps({
+  "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
+  "voice_id": "LcfcDJNUP1GQjkzn1xUU",
+  "rate": "100%"
+})
 headers = {
   'authorization': 'Bearer token',
-  'Content-Type': 'text/plain'
+  'Content-Type': 'application/json'
 }
 
 response = requests.request("POST", url, headers=headers, data=payload)
@@ -300,7 +310,7 @@ GET https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_m
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://contenttest.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7' \
+curl --location 'https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -310,7 +320,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("https://contenttest.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7")
+  .url("https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
@@ -327,7 +337,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://contenttest.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7", requestOptions)
+fetch("https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -339,7 +349,7 @@ $client = new Client();
 $headers = [
   'Authorization' => 'Bearer token'
 ];
-$request = new Request('GET', 'https://contenttest.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7', $headers);
+$request = new Request('GET', 'https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -347,7 +357,7 @@ echo $res->getBody();
 ```python Python  
 import requests
 
-url = "https://contenttest.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7"
+url = "https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7"
 
 payload = {}
 headers = {
@@ -430,6 +440,7 @@ POST https://open.akool.com/api/open/v3/content/video/createbytalkingphoto
 ```bash cURL
 curl --location 'https://open.akool.com/api/open/v3/content/video/createbytalkingphoto' \
 --header 'Authorization: Bearer token' \
+--header 'Content-Type: application/json' \
 --data '{
     "talking_photo_url":"https://drz0f01yeq1cx.cloudfront.net/1688098804494-e7ca71c3-4266-4ee4-bcbb-ddd1ea490e75-9907.jpg",
      "audio_url":"https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3"
