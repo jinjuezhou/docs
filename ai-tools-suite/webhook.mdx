@@ -7,14 +7,7 @@ description: 'Display inline code and code blocks'
 **A webhook is an HTTP-based callback function that allows lightweight, event-driven communication between 2 application programming interfaces (APIs). Webhooks are used by a wide variety of web apps to receive small amounts of data from other apps。**
 
 **Response Data(That is the response data that webhookUrl in the request parameter needs to give us)**
-
-**Content-Type: application/json**
-```json
-{
-  "statusCode": 200
-}
-```
-<Note> If success, statusCode it must be 200</Note>
+<Note> If success, http statusCode it must be 200</Note>
 - **statusCode** is the  status  of response to your request . If success,it must be **200**. If you do not return a status code value of 200, we will retry the response to your webhook address.
 
 **Response Data(The response result we give to the webhookUrl)**
@@ -292,13 +285,9 @@ const obj = {
  if (signature===newSignature) {
      let result = generateAesDecrypt(msg_encrypt,clientId,clientSecret)
      // Handle your own business logic
-     response.json({
-         statusCode:200 // If the processing is successful, statusCode:200 must be returned.
-     })
+     response.status(200).json({})  // If the processing is successful,http statusCode:200 must be returned.
   }else {
-     response.json({
-       statusCode:400
-      }) 
+     res.status(400).json({})
   }
 ```
 
