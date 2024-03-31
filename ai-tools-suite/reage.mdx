@@ -6,7 +6,7 @@ description: 'Display inline code and code blocks'
 ### Image Reage
 
 ```
-POST https://open.akool.com/api/open/v3/faceswap/highquality/imgreage
+POST https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage
 ```
 
 **Request Headers**
@@ -55,7 +55,7 @@ POST https://open.akool.com/api/open/v3/faceswap/highquality/imgreage
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/faceswap/highquality/imgreage' \
+curl --location 'https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -77,7 +77,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\n    \"targetImage\": [    \n        {\n            \"path\": \"https://d21ksh0k4smeql.cloudfront.net/crop_1695201103793-0234-0-1695201106985-2306.png\",  \n            \"opts\": \"2804,2182:3607,1897:3341,2566:3519,2920\"   \n        }\n    ],\n    \"face_reage\":10,\n    \"modifyImage\": \"https://d3t6pcz7y7ey7x.cloudfront.net/material1__a92671d0-7960-4028-b2fc-aadd3541f32d.jpg\", \n    \"webhookUrl\":\"http://localhost:3007/api/webhook\" \n}");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/faceswap/highquality/imgreage")
+  .url("https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage")
   .method("POST", body)
   .addHeader("Authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -109,7 +109,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/faceswap/highquality/imgreage", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -133,7 +133,7 @@ $body = '{
   "modifyImage": "https://d3t6pcz7y7ey7x.cloudfront.net/material1__a92671d0-7960-4028-b2fc-aadd3541f32d.jpg",
   "webhookUrl": "http://localhost:3007/api/webhook"
 }';
-$request = new Request('POST', 'https://open.akool.com/api/open/v3/faceswap/highquality/imgreage', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -142,7 +142,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "https://open.akool.com/api/open/v3/faceswap/highquality/imgreage"
+url = "https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage"
 
 payload = json.dumps({
   "targetImage": [
@@ -185,7 +185,7 @@ print(response.text)
 ### Video Reage
 
 ```
-POST https://open.akool.com/api/open/v3/faceswap/highquality/vidreage
+POST https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage
 ```
 
 **Request Headers**
@@ -236,7 +236,7 @@ POST https://open.akool.com/api/open/v3/faceswap/highquality/vidreage
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/faceswap/highquality/vidreage' \
+curl --location 'https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -258,7 +258,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\n    \"targetImage\": [    \n        {\n            \"path\": \"https://d21ksh0k4smeql.cloudfront.net/crop_1695200391486-4662-0-1695200392027-6110.png\",   \n            \"opts\": \"1622,759:2149,776:1869,1085:1875,1345\" \n        }\n    ],\n    \"face_reage\":10,\n    \"modifyVideo\": \"https://d3t6pcz7y7ey7x.cloudfront.net/Video10__d2a8cf85-10ae-4c2d-8f4b-d818c0a2e4a4.mp4\",    \n     \"webhookUrl\":\"http://localhost:3007/api/webhook\" \n}");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/faceswap/highquality/vidreage")
+  .url("https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage")
   .method("POST", body)
   .addHeader("Authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -290,7 +290,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/faceswap/highquality/vidreage", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -314,7 +314,7 @@ $body = '{
   "modifyVideo": "https://d3t6pcz7y7ey7x.cloudfront.net/Video10__d2a8cf85-10ae-4c2d-8f4b-d818c0a2e4a4.mp4",
   "webhookUrl": "http://localhost:3007/api/webhook"
 }';
-$request = new Request('POST', 'https://open.akool.com/api/open/v3/faceswap/highquality/vidreage', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -323,7 +323,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "https://open.akool.com/api/open/v3/faceswap/highquality/vidreage"
+url = "https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage"
 
 payload = json.dumps({
   "targetImage": [
@@ -366,7 +366,7 @@ print(response.text)
 ### Get Reage Result List Byids
 
 ```
-GET https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a
+GET https://openapi.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a
 ```
 
 **Request Headers**
@@ -379,7 +379,7 @@ GET https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b3
 
 | Parameter | Type   | Value | Description                                                                                                                                                                                                                            |
 |-----------|--------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `_ids`    | String |       | Result ids are strings separated by commas. You can get it by returning the `_id` field from https://open.akool.com/api/open/v3/faceswap/highquality/imgreage or https://open.akool.com/api/open/v3/faceswap/highquality/vidreage api. |
+| `_ids`    | String |       | Result ids are strings separated by commas. You can get it by returning the `_id` field from https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage or https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage api. |
 
 
 **Response Attributes**
@@ -397,7 +397,7 @@ GET https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b3
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a' \
+curl --location 'https://openapi.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -407,7 +407,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a")
+  .url("https://openapi.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
@@ -424,7 +424,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -436,7 +436,7 @@ $client = new Client();
 $headers = [
   'Authorization' => 'Bearer token'
 ];
-$request = new Request('GET', 'https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a', $headers);
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -444,7 +444,7 @@ echo $res->getBody();
 ```python Python 
 import requests
 
-url = "https://open.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a"
+url = "https://openapi.akool.com/api/open/v3/faceswap/result/listbyids?_ids=64ef2f27b33f466877701c6a"
 
 payload = {}
 headers = {
@@ -489,7 +489,7 @@ print(response.text)
 ### Reage Task cancel
 
 ```
-POST https://open.akool.com/api/open/v3/faceswap/job/del
+POST https://openapi.akool.com/api/open/v3/faceswap/job/del
 ```
 
 **Request Headers**
@@ -502,7 +502,7 @@ POST https://open.akool.com/api/open/v3/faceswap/job/del
 
 | Parameter | Type   | Value | Description                                                                                                                                                                                              |
 |-----------|--------|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| job_ids   | String |       | Task id, You can get it by returning the job_id field based on https://open.akool.com/api/open/v3/faceswap/highquality/imgreage or https://open.akool.com/api/open/v3/faceswap/highquality/vidreage api. |
+| job_ids   | String |       | Task id, You can get it by returning the job_id field based on https://openapi.akool.com/api/open/v3/faceswap/highquality/imgreage or https://openapi.akool.com/api/open/v3/faceswap/highquality/vidreage api. |
 
 **Response Attributes**
 
@@ -517,7 +517,7 @@ POST https://open.akool.com/api/open/v3/faceswap/job/del
 
 ```json
 {
-    "job_ids":""    // task id, You can get it by returning the job_id field based on https://open.akool.com/api/open/v3/faceswap/highquality/specifyimage or https://open.akool.com/api/open/v3/faceswap/highquality/specifyvideo api.
+    "job_ids":""    // task id, You can get it by returning the job_id field based on https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyimage or https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo api.
 }
 ```
 
@@ -527,7 +527,7 @@ POST https://open.akool.com/api/open/v3/faceswap/job/del
 
 ```bash cURL
 
-curl --location 'https://open.akool.com/api/open/v3/faceswap/job/del' \
+curl --location 'https://openapi.akool.com/api/open/v3/faceswap/job/del' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -541,7 +541,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\n    \"job_ids\":\"\"    \n}");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/faceswap/job/del")
+  .url("https://openapi.akool.com/api/open/v3/faceswap/job/del")
   .method("POST", body)
   .addHeader("Authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -565,7 +565,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/faceswap/job/del", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/faceswap/job/del", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -581,7 +581,7 @@ $headers = [
 $body = '{
   "job_ids": ""
 }';
-$request = new Request('POST', 'https://open.akool.com/api/open/v3/faceswap/job/del', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/faceswap/job/del', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -590,7 +590,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "https://open.akool.com/api/open/v3/faceswap/job/del"
+url = "https://openapi.akool.com/api/open/v3/faceswap/job/del"
 
 payload = json.dumps({
   "job_ids": ""
