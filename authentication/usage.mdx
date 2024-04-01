@@ -17,7 +17,7 @@ OpenAPI uses API keys for authentication. Get your API token from our API interf
 #### Get the token
 
 ```
-POST https://open.akool.com/api/open/v3/getToken
+POST https://openapi.akool.com/api/open/v3/getToken
 ```
 
 **Body Attributes**
@@ -51,7 +51,7 @@ POST https://open.akool.com/api/open/v3/getToken
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/getToken' \
+curl --location 'https://openapi.akool.com/api/open/v3/getToken' \
 --header 'Content-Type: application/json' \
 --data '{
   "clientId": "64db241f6d9e5c4bd136c187",
@@ -65,7 +65,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\r\n    \"clientId\": \"64db241f6d9e5c4bd136c187\",\r\n    \"clientSecret\": \"openapi.akool.com\"\r\n}");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/getToken")
+  .url("https://openapi.akool.com/api/open/v3/getToken")
   .method("POST", body)
   .addHeader("Content-Type", "application/json")
   .build();
@@ -88,7 +88,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/getToken", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/getToken", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -104,7 +104,7 @@ $body = '{
   "clientId": "64db241f6d9e5c4bd136c187",
   "clientSecret": "openapi.akool.com"
 }';
-$request = new Request('POST', 'https://open.akool.com/api/open/v3/getToken', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/getToken', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -113,7 +113,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "https://open.akool.com/api/open/v3/getToken"
+url = "https://openapi.akool.com/api/open/v3/getToken"
 
 payload = json.dumps({
   "clientId": "64db241f6d9e5c4bd136c187",
