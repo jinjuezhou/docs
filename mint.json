@@ -5,7 +5,7 @@
     "light": "/logo/akool-light.svg",
     "dark": "/logo/akool-dark.svg"
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/favicon.svg",
   "colors": {
     "primary": "#8458cc",
     "light": "#8458cc",
