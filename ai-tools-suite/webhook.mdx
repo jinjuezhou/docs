@@ -7,15 +7,8 @@ description: 'Display inline code and code blocks'
 **A webhook is an HTTP-based callback function that allows lightweight, event-driven communication between 2 application programming interfaces (APIs). Webhooks are used by a wide variety of web apps to receive small amounts of data from other apps。**
 
 **Response Data(That is the response data that webhookUrl in the request parameter needs to give us)**
-
-**Content-Type: application/json**
-```json
-{
-  "statusCode": 200
-}
-```
-<Note> If success, statusCode it must be 200</Note>
-- **statusCode** is the  status  of response to your request . If success,it must be **200**. If you do not return a status code value of 200, we will retry the response to your webhook address.
+<Note> If success, http statusCode it must be 200</Note>
+- **statusCode** is the http status  of response to your request . If success,it must be **200**. If you do not return a status code value of 200, we will retry the response to your webhook address.
 
 **Response Data(The response result we give to the webhookUrl)**
 **Content-Type: application/json**
@@ -275,6 +268,7 @@ public class CryptoUtils {
 <CodeGroup>
 
 ```javascript Nodejs
+// express example
 const obj = {
   "signature": "04e30dd43d9d8f95dd7c127dad617f0929d61c1d",
   "dataEncrypt": "LuG1OVSVIwOO/xpW00eSYo77Ncxa9h4VKmOJRjwoyoAmCIS/8FdJRJ+BpZn90BVAAg8xpU1bMmcDlAYDT010Wa9tNi1jivX25Ld03iA4EKs=",
@@ -292,13 +286,9 @@ const obj = {
  if (signature===newSignature) {
      let result = generateAesDecrypt(msg_encrypt,clientId,clientSecret)
      // Handle your own business logic
-     response.json({
-         statusCode:200 // If the processing is successful, statusCode:200 must be returned.
-     })
+     response.status(200).json({})  // If the processing is successful,http statusCode:200 must be returned.
   }else {
-     response.json({
-       statusCode:400
-      }) 
+     response.status(400).json({})
   }
 ```
 
@@ -343,13 +333,10 @@ if __name__ == "__main__":
         result = generate_aes_decrypt(msg_encrypt, clientId, clientSecret)
         # Handle your own business logic
         print("Decrypted Data:", result)
-        # Return success status code
-        statusCode = 200
+        # Return success http satusCode 200
+        
     else:
-        # Return error status code
-        statusCode = 400
-    
-    print("Status Code:", statusCode)
+        # Return error http statuCode 400
 
 ```
 
@@ -425,13 +412,9 @@ public class CryptoUtils {
             String result = generateAesDecrypt(msgEncrypt, clientId, clientSecret);
             // Handle your own business logic
             System.out.println("Decrypted Data: " + result);
-            // Return success status code
-            int statusCode = 200;
-            System.out.println("Status Code: " + statusCode);
+            // must be Return success http satusCode 200
         } else {
-            // Return error status code
-            int statusCode = 400;
-            System.out.println("Status Code: " + statusCode);
+            // must be Return error http satusCode 400
         }
     }
 }

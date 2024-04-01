@@ -7,14 +7,14 @@ description: 'Display inline code and code blocks'
 ### Get Voice List Result
 
 ```
-GET https://open.akool.com/api/open/v3/voice/list
+GET https://openapi.akool.com/api/open/v3/voice/list
 ```
 
 **Request Headers**
 
 | **Parameter** | **Value**    | **Description**                                                                                                                                               |
 |---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
 
 **Response Attributes**
 
@@ -31,7 +31,7 @@ GET https://open.akool.com/api/open/v3/voice/list
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/voice/list' \
+curl --location 'https://openapi.akool.com/api/open/v3/voice/list' \
 --header 'Authorization: Bearer {{Authorization}}'
 ```
 
@@ -41,7 +41,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/voice/list")
+  .url("https://openapi.akool.com/api/open/v3/voice/list")
   .method("GET", body)
   .addHeader("Authorization", "Bearer {{Authorization}}")
   .build();
@@ -58,7 +58,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/voice/list", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/voice/list", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -70,7 +70,7 @@ $client = new Client();
 $headers = [
   'Authorization' => '{{Authorization}}'
 ];
-$request = new Request('GET', 'https://open.akool.com/api/open/v3/voice/list', $headers);
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/voice/list', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -78,7 +78,7 @@ echo $res->getBody();
 ```python Python 
 import requests
 
-url = "https://open.akool.com/api/open/v3/voice/list"
+url = "https://openapi.akool.com/api/open/v3/voice/list"
 
 payload = {}
 headers = {
@@ -121,7 +121,7 @@ print(response.text)
 ### Create Audio
 
 ```
-POST https://open.akool.com/api/open/v3/content/video/createaudio
+POST https://openapi.akool.com/api/open/v3/content/video/createaudio
 ```
 
 
@@ -129,7 +129,7 @@ POST https://open.akool.com/api/open/v3/content/video/createaudio
 
 | **Parameter** | **Value**    | **Description**                                                                                                                                               |
 |---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
 
 **Body Attributes**
 
@@ -165,7 +165,7 @@ POST https://open.akool.com/api/open/v3/content/video/createaudio
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/content/video/createaudio' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/video/createaudio' \
 --header 'authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -181,7 +181,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\r\n    \"input_text\": \"Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from\",\r\n    \"voice_id\": \"LcfcDJNUP1GQjkzn1xUU\",\r\n    \"rate\": \"100%\"\r\n}");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/content/video/createaudio")
+  .url("https://openapi.akool.com/api/open/v3/content/video/createaudio")
   .method("POST", body)
   .addHeader("authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -207,7 +207,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/content/video/createaudio", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/content/video/createaudio", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -225,7 +225,7 @@ $body = '{
   "voice_id": "LcfcDJNUP1GQjkzn1xUU",
   "rate": "100%"
 }';
-$request = new Request('POST', 'https://open.akool.com/api/open/v3/content/video/createaudio', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/content/video/createaudio', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 
@@ -235,7 +235,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "https://open.akool.com/api/open/v3/content/video/createaudio"
+url = "https://openapi.akool.com/api/open/v3/content/video/createaudio"
 
 payload = json.dumps({
   "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
@@ -279,7 +279,7 @@ print(response.text)
 ### Get Audio Info Result
 
 ```
-GET https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7
+GET https://openapi.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7
 ```
 
 
@@ -287,13 +287,13 @@ GET https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_m
 
 | **Parameter** | **Value**    | **Description**                                                                                                                                               |
 |---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
 
 **Query Attributes**
 
 | **Parameter**  | **Type** | **Value** | **Description**                                                                                                                   |
 |----------------|----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
-| audio_model_id | String   |           | audio db id：You can get it based on the `_id` field returned by https://open.akool.com/api/open/v3/content/video/createaudio api. |
+| audio_model_id | String   |           | audio db id：You can get it based on the `_id` field returned by https://openapi.akool.com/api/open/v3/content/video/createaudio api. |
 
 **Response Attributes**
 
@@ -310,7 +310,7 @@ GET https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_m
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -320,7 +320,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7")
+  .url("https://openapi.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
@@ -337,7 +337,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -349,7 +349,7 @@ $client = new Client();
 $headers = [
   'Authorization' => 'Bearer token'
 ];
-$request = new Request('GET', 'https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7', $headers);
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -357,7 +357,7 @@ echo $res->getBody();
 ```python Python  
 import requests
 
-url = "https://open.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7"
+url = "https://openapi.akool.com/api/open/v3/content/video/audio/infobymodelid?audio_model_id=65f8017f56559aa67f0ecde7"
 
 payload = {}
 headers = {
@@ -397,14 +397,14 @@ print(response.text)
 ### Talking Photo
 
 ```
-POST https://open.akool.com/api/open/v3/content/video/createbytalkingphoto
+POST https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto
 ```
 
 **Request Headers**
 
 | **Parameter** | **Value**    | **Description**                                                                                                                                               |
 |---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
 
 **Body Attributes**
 
@@ -438,7 +438,7 @@ POST https://open.akool.com/api/open/v3/content/video/createbytalkingphoto
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/content/video/createbytalkingphoto' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -453,7 +453,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\r\n    \"talking_photo_url\":\"https://drz0f01yeq1cx.cloudfront.net/1688098804494-e7ca71c3-4266-4ee4-bcbb-ddd1ea490e75-9907.jpg\",\r\n    \"audio_url\":\"https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3\"\r\n}");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/content/video/createbytalkingphoto")
+  .url("https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto")
   .method("POST", body)
   .addHeader("Authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -479,7 +479,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/content/video/createbytalkingphoto", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -496,7 +496,7 @@ $body = '{
   "talking_photo_url": "https://drz0f01yeq1cx.cloudfront.net/1688098804494-e7ca71c3-4266-4ee4-bcbb-ddd1ea490e75-9907.jpg",
   "audio_url": "https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3"
 }';
-$request = new Request('POST', 'https://open.akool.com/api/open/v3/content/video/createbytalkingphoto', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -505,7 +505,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "https://open.akool.com/api/open/v3/content/video/createbytalkingphoto"
+url = "https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto"
 
 payload = json.dumps({
   "talking_photo_url": "https://drz0f01yeq1cx.cloudfront.net/1688098804494-e7ca71c3-4266-4ee4-bcbb-ddd1ea490e75-9907.jpg",
@@ -551,7 +551,7 @@ print(response.text)
 ### Get Video Info Result
 
 ```
-GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
+GET https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
 ```
 
 
@@ -559,14 +559,14 @@ GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_i
 
 | **Parameter** | **Value**    | **Description**                                                                                                                                               |
 |---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://open.akool.com/api/open/v3/getToken](https://open.akool.com/api/open/v3/getToken) api. |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
 
 
 **Query Attributes**
 
 | **Parameter**  | **Type** | **Value** | **Description**                                                                                                                          |
 |----------------|----------|-----------|------------------------------------------------------------------------------------------------------------------------------------------|
-| video_model_id | String   |           | video db id：You can get it based on the _id field returned by https://open.akool.com/api/open/v3/content/video/createbytalkingphoto api. |
+| video_model_id | String   |           | video db id：You can get it based on the _id field returned by https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto api. |
 
 **Response Attributes**
 
@@ -583,7 +583,7 @@ GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_i
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -593,7 +593,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217")
+  .url("https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
@@ -610,7 +610,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -622,7 +622,7 @@ $client = new Client();
 $headers = [
   'Authorization' => 'Bearer token'
 ];
-$request = new Request('GET', 'https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217', $headers);
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -630,7 +630,7 @@ echo $res->getBody();
 ```python Python 
 import requests
 
-url = "https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217"
+url = "https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217"
 
 payload = {}
 headers = {
