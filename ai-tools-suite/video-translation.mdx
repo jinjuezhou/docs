@@ -406,7 +406,8 @@ print(response.text)
         "video_lock_duration": 7.91,    
         "deduction_lock_duration": 10, 
         "video_status": 2,  // current status of video： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the video translation details.）】
-        "external_video": "",  
+        "external_video": "", 
+         "lipsync_video_url":"", //if you set lipsync = true, you can use lipsync_video_url
         "video": ""  //  Generated video resource url
     }
 }
