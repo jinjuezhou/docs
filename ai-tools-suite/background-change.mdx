@@ -18,32 +18,33 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
 
 **Body Attributes**
 
-|      **Parameter**     | **Type** | **Value**      | **Description**                                                                                                                      |
-|------------------------|----------|----------------|--------------------------------------------------------------------------------------------------------------------------------------|
-| color_code             | String   |  eg:  #aafbe3      |    background color。 Use hexadecimal to represent colors                                                                       |
-| template_url           | String   |                    |    resource address of the background image     | 
-| origin_img             | String   |                    |    Foreground image address                                                                               |
-| modify_template_size   | String   |  eg:"3031x3372"    |    The size of the template image after expansion                                                                                  |
-| modify_origin_img_size | String   |  eg: "3031x2894"   |    The size of the foreground image after scaling                                                                                 |
-| overlay_origin_x       | int      |  eg: 205           |    The position of the upper left corner of the foreground image in the canvas                                                                                  |
-| overlay_origin_y       | int      |  eg: 497           |    The position of the upper left corner of the foreground image in the canvas                                                                             |
-| overlay_template_x     | int      |  eg: 10            |    The position of the upper left corner of the template image in the canvas                                                                        |
-| overlay_template_y     | int      |  eg: 497           |    The position of the upper left corner of the template image in the canvas                                                                      |
-| canvas_size            | String   |  eg:"3840x3840"    |    Canvas size                                                                             |
-| webhookUrl             | String   |                    |    Callback url address based on HTTP request                                                               |
+|      **Parameter**     |  **isRequired** |  **Type** | **Value**          | **Description**                                                                         |
+|------------------------|-----------------|-----------|--------------------|-----------------------------------------------------------------------------------------|
+| color_code             |        false    | String    |  eg:  #aafbe3      |    background color。 Use hexadecimal to represent colors                            |
+| template_url           |        false    | String    |                    |    resource address of the background image     | 
+| origin_img             |        true     | String    |                    |    Foreground image address                                                                |
+| modify_template_size   |        false    | String    |  eg:"3031x3372"    |    The size of the template image after expansion                                             |
+| modify_origin_img_size |        true     | String    |  eg: "3031x2894"   |    The size of the foreground image after scaling                                             |
+| overlay_origin_x       |        true     | int       |  eg: 205           |    The position of the upper left corner of the foreground image in the canvas                |
+| overlay_origin_y       |        true     | int       |  eg: 497           |    The position of the upper left corner of the foreground image in the canvas                |
+| overlay_template_x     |        false    | int       |  eg: 10            |    The position of the upper left corner of the template image in the canvas                  |
+| overlay_template_y     |        false    | int       |  eg: 497           |    The position of the upper left corner of the template image in the canvas                  |
+| canvas_size            |        true     | String    |  eg:"3840x3840"    |    Canvas size                                                                             |
+| webhookUrl             |        true     | String    |                    |    Callback url address based on HTTP request                                                 |
 
 **Response Attributes**
 
 | **Parameter** | **Type** | **Value**                      | **Description**                                                                                                   |
-|---------------|----------|--------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| code          | int      | 1000                           | Interface returns business status code(1000:success)                                                              |
-| msg           | String   |                                | Interface returns status information                                                                              |
-| data          | Object   | `{ _id: "", image_status: 1 }` | _id: Interface returns data, image_status: the status of image: 【1:queueing, 2:processing, 3:completed, 4:failed】 |
+|---------------|----------|-------------------------------|---------------------------------------------------------------------------------------------------------------|
+| code          | int      | 1000                          | Interface returns business status code(1000:success)                                                          |
+| msg           | String   |                               | Interface returns status information                                                                          |
+| data          | Object   | `{ _id: "", image_status: 1 }`| _id: Interface returns data, image_status: the status of image: 【1:queueing, 2:processing, 3:completed,4:failed】 |
 
 **Example**
 
 **Body**
-
+<Note>You have 2 combination parameters to choose from</Note>
+<Tip>The first combination of parameters<Tip>
 ```json
 {
     "canvas_size": "3840x3840",
@@ -55,6 +56,18 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
     "modify_origin_img_size": "3830x2145",
     "overlay_origin_x": 5,
     "overlay_origin_y": 849
+}
+```
+<Tip>The second combination of parameters<Tip>
+```json
+{
+"color_code": "#aafbe3",
+"canvas_size": "3840x2160",
+"origin_img": "https://drz0f01yeq1cx.cloudfront.net/1712128532755-3fd30fa3-8629-408e-b7b5-126eb983e4c2-1781.png",
+"modify_origin_img_size": "2143x2146",
+"overlay_origin_x": 848,
+"overlay_origin_y": 7,
+"userId": "65e2d10d0ded30c110078c32"
 }
 ```
 
