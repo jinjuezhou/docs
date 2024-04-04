@@ -32,7 +32,7 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
 | canvas_size            |        true     | String    |  eg:"3840x3840"    |    Canvas size                                                                             |
 | webhookUrl             |        true     | String    |                    |    Callback url address based on HTTP request                                                 |
 
-<Note>In addition to using the required parameters, you must also use one of the two parameters color_code or template_url. Once you use template_url, you must carry three additional parameters: modify_template_size, overlay_template_x, and overlay_template_y.</Note>
+<Note>In addition to using the required parameters, you can also use one of the two parameters color_code or template_url(but this is not required). Once you use template_url, you must carry three additional parameters: modify_template_size, overlay_template_x, and overlay_template_y.</Note>
 
 **Response Attributes**
 
@@ -45,7 +45,7 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
 **Example**
 
 **Body**
-<Note>You have 2 combination parameters to choose from</Note>
+<Note>You have 3 combination parameters to choose from</Note>
 <Tip>The first combination of parameters:</Tip>
 ```json
 {
@@ -69,6 +69,17 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
 "modify_origin_img_size": "2143x2146",
 "overlay_origin_x": 848,
 "overlay_origin_y": 7
+}
+```
+
+<Tip>The third combination of parameters:</Tip>
+```json
+{
+"canvas_size": "3840x3840",
+"origin_img": "https://drz0f01yeq1cx.cloudfront.net/1712132369637-69a946c0-b2a7-4fe6-92c8-2729b36cc13e-0183.png",
+"modify_origin_img_size": "3060x3824",
+"overlay_origin_x": 388,
+"overlay_origin_y": 8
 }
 ```
 
