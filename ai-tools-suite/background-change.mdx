@@ -32,7 +32,7 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
 | canvas_size            |        true     | String    |  eg:"3840x3840"    |    Canvas size                                                                             |
 | webhookUrl             |        true     | String    |                    |    Callback url address based on HTTP request                                                 |
 
-<Note>In addition to using the required parameters, you can also use one of the two parameters color_code or template_url(but this is not required). Once you use template_url, you must carry three additional parameters: modify_template_size, overlay_template_x, and overlay_template_y.</Note>
+<Note>In addition to using the required parameters,you can also use one or both of the color_code or template_url parameters(but this is not required). Once you use template_url, you must carry three additional parameters: modify_template_size, overlay_template_x, and overlay_template_y.</Note>
 
 **Response Attributes**
 
@@ -45,7 +45,7 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
 **Example**
 
 **Body**
-<Note>You have 3 combination parameters to choose from</Note>
+<Note>You have 4 combination parameters to choose from</Note>
 <Tip>The first combination of parameters: use template_url</Tip>
 ```json
 {
@@ -72,7 +72,24 @@ POST https://openapi.akool.com/api/open/v3/content/image/bg/replace
 }
 ```
 
-<Tip>The third combination of parameters:</Tip>
+<Tip>The third combination of parameters: use template_url and color_code </Tip>
+
+```json
+{
+    "color_code": "#aafbe3",
+    "canvas_size": "3840x3840",
+    "template_url": "https://s3-alpha-sig.figma.com/img/dd86/048d/a2f66b5440ca0097162432cc5d420f31?Expires=1712534400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YfFEN1MK9UZvh5CX8ne6OOPWLW4mMYU7x8jm7CyCtD5XyEmz-nsuzuLE2TdfYNXtt6vF3TLmyRbECkpAKzEnnpR8LMNgT7w2v-qn~QwnJAjAhmBhBwZ95eUEQ1IPxpX~8Gp8U3aUOYHla3mwWEULlSpFgcei6HffDZh2oIC6prKzH8rWB4JuUcpUvKw7Lq~kUfeEZ8Em-l3DvgQYzrKIuAAvoPKiYOeqIcmUs9Ba1d9wAFbjJXxHqo9xxJENMLtXIOqjGbcZLV9DWpk-fZnQAhC-ikrqoEpU~zA64aqcGYE0pv~LmV7LrCrugBcujQFBvdZqgdoV8po4HBH1Io~TkQ__",
+    "modify_template_size": "3828x3828",
+    "overlay_template_x": 2049,
+    "overlay_template_y": -6,
+    "origin_img": "https://drz0f01yeq1cx.cloudfront.net/1712132369637-69a946c0-b2a7-4fe6-92c8-2729b36cc13e-0183.png",
+    "modify_origin_img_size": "3062x3828",
+    "overlay_origin_x": -72,
+    "overlay_origin_y": -84
+}
+```
+
+<Tip>The fourth combination of parameters:</Tip>
 ```json
 {
 "canvas_size": "3840x3840",
