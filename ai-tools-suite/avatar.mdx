@@ -1,0 +1,1201 @@
+---
+title: "Avatar"
+description: "Avatar API documentation"
+---
+
+### Description
+
+- First you need to call [Get Voice List Result](https://openapi.akool.com/api/open/v3/voice/list) the interface get the 【voice_id】 field. If you want to use your own voice resources, you need to upload your resources by calling the voice upload interface, and only resource links are supported here
+- Secondly, through the voice_id field obtained in the previous step, you need to call [Create Avatar Audio by Voice](https://openapi.akool.com/api/open/v3/audio/create) the interface to generate the audio you need, and here you get the generated audio link
+- Finally, you need to generate an avatar video by calling the API [Create Avatar Video](https://openapi.akool.com/api/open/v3/avatar/createVideo) of the field 【url】 obtained in the previous step
+
+### Get Avatar List Result
+
+```
+GET https://openapi.akool.com/api/open/v3/avatar/list
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                                     |
+| ------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
+
+**Query Attributes**
+
+| **Parameter** | **Type** | **Value** | **Description**                                                                                                                               |
+| ------------- | -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| from          | Number   | 2、3      | 2 represents the official avatar of Akool, 3 represents the avatar uploaded by the user themselves，If empty, returns all avatars by default. |
+| page          | Number   | 1         | Current number of pages，Default is 1.                                                                                                        |
+| size          | Number   | 10        | Current number of returns per page，Default is 100.                                                                                           |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                        | **Description**                                                                                                  |
+| ------------- | -------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| code          | int      | 1000                             | Interface returns business status code(1000:success)                                                             |
+| msg           | String   | OK                               | Interface returns status information                                                                             |
+| data          | Array    | `[{ avatar_id: "xx", url: "" }]` | avatar_id: Used by avatar interface and creating avatar interface. url: You can preview the avatar via the link. |
+
+**Example**
+
+**Request**
+
+<CodeGroup>
+
+```bash cURL
+curl --location 'https://openapi.akool.com/api/open/v3/avatar/list?from=2&page=1&size=100' \
+--header 'Authorization: Bearer {{Authorization}}'
+```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("text/plain");
+RequestBody body = RequestBody.create(mediaType, "");
+Request request = new Request.Builder()
+  .url("https://openapi.akool.com/api/open/v3/avatar/list?from=2&page=1&size=100")
+  .method("GET", body)
+  .addHeader("Authorization", "Bearer {{Authorization}}")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer {{Authorization}}");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow",
+};
+
+fetch(
+  "https://openapi.akool.com/api/open/v3/avatar/list?from=2&page=1&size=100",
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => '{{Authorization}}'
+];
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/avatar/list?from=2&page=1&size=100', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+
+url = "https://openapi.akool.com/api/open/v3/avatar/list?from=2&page=1&size=100"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer {{Authorization}}'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+**Response**
+
+```json
+{
+  "code": 1000,
+  "msg": "ok",
+  "data": [
+    {
+      "_id": "655ffeada6976ea317087193",
+      "disabled": false,
+      "uid": 1,
+      "type": 1,
+      "from": 2,
+      "sort": 12,
+      "create_time": 1700788730000,
+      "name": "Yasmin in White shirt",
+      "avatar_id": "Yasmin_in_White_shirt_20231121",
+      "url": "https://drz0f01yeq1cx.cloudfront.net/1700786304161-b574407f-f926-4b3e-bba7-dc77d1742e60-8169.png",
+      "modify_url": "https://drz0f01yeq1cx.cloudfront.net/1700786304161-b574407f-f926-4b3e-bba7-dc77d1742e60-8169.png",
+      "gender": "female",
+      "thumbnailUrl": "https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786304161-b574407f-f926-4b3e-bba7-dc77d1742e60-8169.png",
+      "crop_arr": []
+    }
+  ]
+}
+```
+
+### Get Voice List Result
+
+```
+GET https://openapi.akool.com/api/open/v3/voice/list
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                                     |
+| ------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
+
+**Query Attributes**
+
+| **Parameter** | **Type** | **Value** | **Description**                                                                                                                            |
+| ------------- | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| from          | Number   | 3、4      | 3 represents the official voice of Akool, 4 represents the voice uploaded by the user themselves，If empty, returns all voices by default. |
+| page          | Number   | 1         | Current number of pages，Default is 1.                                                                                                     |
+| size          | Number   | 100       | Current number of returns per page，Default is 100.                                                                                        |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                           | **Description**                                                                                                    |
+| ------------- | -------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| code          | int      | 1000                                | Interface returns business status code(1000:success)                                                               |
+| msg           | String   | OK                                  | Interface returns status information                                                                               |
+| data          | Array    | `[{ voice_id: "xx", preview: "" }]` | voice_id: Used by avatar interface and creating avatar interface. preview: You can preview the voice via the link. |
+
+**Example**
+
+**Request**
+
+<CodeGroup>
+
+```bash cURL
+curl --location 'https://openapi.akool.com/api/open/v3/voice/list?from=2&page=1&size=100' \
+--header 'Authorization: Bearer {{Authorization}}'
+```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("text/plain");
+RequestBody body = RequestBody.create(mediaType, "");
+Request request = new Request.Builder()
+  .url("https://openapi.akool.com/api/open/v3/voice/list?from=3&page=1&size=100")
+  .method("GET", body)
+  .addHeader("Authorization", "Bearer {{Authorization}}")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer {{Authorization}}");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow",
+};
+
+fetch(
+  "https://openapi.akool.com/api/open/v3/voice/list?from=3&page=1&size=100",
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => '{{Authorization}}'
+];
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/voice/list?from=3&page=1&size=100', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+
+url = "https://openapi.akool.com/api/open/v3/voice/list?from=3&page=1&size=100"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer {{Authorization}}'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+**Response**
+
+```json
+{
+  "code": 1000,
+  "msg": "ok",
+  "data": [
+    {
+      "_id": "65e980d7af040969db5be83d",
+      "create_time": 1709540668624,
+      "uid": 1,
+      "from": 3,
+      "type": 2,
+      "voice_id": "ThT5KcBeYPX3keUQqHPh",
+      "gender": "Female",
+      "language": "English",
+      "name": "Dorothy",
+      "description": "pleasant",
+      "useCase": "children's stories",
+      "accent": "british",
+      "__v": 0,
+      "preview": "https://storage.googleapis.com/eleven-public-prod/premade/voices/ThT5KcBeYPX3keUQqHPh/981f0855-6598-48d2-9f8f-b6d92fbbe3fc.mp3"
+    }
+  ]
+}
+```
+
+### Create Avatar Audio by Voice
+
+```
+POST https://openapi.akool.com/api/open/v3/audio/create
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                                     |
+| ------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
+
+**Body Attributes**
+
+| **Parameter** | **Type** | **Required** | **Value** | **Description**                                                                                                                                        |
+| ------------- | -------- | ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| input_text    | String   | true         |           | Enter what avatar in video to say                                                                                                                      |
+| voice_id      | String   | false        |           | Voice id: get from [https://content.akool.com/api/open/v3/voice/list](https://content.akool.com/api/open/v3/voice/list) api，the field is 【voice_id】 |
+| rate          | String   | true         |           | Voice speaking speed【field value ranges（0%-100%）】                                                                                                  |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                        | **Description**                                                                                                                                                                                                                                                                                                        |
+| ------------- | -------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code          | int      | 1000                             | Interface returns business status code(1000:success)                                                                                                                                                                                                                                                                   |
+| msg           | String   |                                  | Interface returns status information                                                                                                                                                                                                                                                                                   |
+| data          | Object   | `{ _id: "", status: 1, url:"" }` | \_id: Interface returns data, status: the status of audio: 【1:queueing, 2:processing, 3:completed, 4:failed】, url: Links to the generated audio resources，You can use it in the interface [https://openapi.akool.com/api/open/v3/avatar/createVideo](https://openapi.akool.com/api/open/v3/avatar/createVideo) api. |
+
+**Example**
+
+**Body**
+
+```json
+{
+  "create_time": 1712113285547,
+  "input_text": "Hello, this is Akool's AI platform!",
+  "rate": "100%",
+  "voice_model_id": "65e813955daad44c2267380d",
+  "url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3",
+  "status": 3,
+  "_id": "660cc685b0950b5bf9bf4b55"
+}
+```
+
+**Request**
+
+<CodeGroup>
+
+```bash cURL
+curl --location 'https://openapi.akool.com/api/open/v3/audio/create' \
+--header 'authorization: Bearer token' \
+--header 'Content-Type: application/json' \
+--data '{
+  "input_text": "Hello, this is Akool's AI platform!",
+  "rate": "100%",
+  "voice_id": "pNInz6obpgDQGcFmaJgB"
+}'
+```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"input_text\": \"Hello, this is Akool's AI platform!\",\n    \"rate\": \"100%\",\n    \"voice_id\": \"pNInz6obpgDQGcFmaJgB\"\n}");
+Request request = new Request.Builder()
+  .url("https://openapi.akool.com/api/open/v3/audio/create")
+  .method("POST", body)
+  .addHeader("authorization", "Bearer token")
+  .addHeader("Content-Type", "application/json")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("authorization", "Bearer token");
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  input_text: "Hello, this is Akool's AI platform!",
+  rate: "100%",
+  voice_id: "pNInz6obpgDQGcFmaJgB",
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow",
+};
+
+fetch("https://openapi.akool.com/api/open/v3/audio/create", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'authorization' => 'Bearer token',
+  'Content-Type' => 'application/json'
+];
+$body = '{
+  "input_text": "Hello, this is Akool's AI platform!",
+  "rate": "100%",
+  "voice_id": "pNInz6obpgDQGcFmaJgB"
+}';
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/audio/create', $headers, $body);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+```
+
+```python Python
+import requests
+import json
+
+url = "https://openapi.akool.com/api/open/v3/content/video/createaudio"
+
+payload = json.dumps({
+  "input_text": "Hello, this is Akool's AI platform!",
+  "rate": "100%",
+  "voice_id": "pNInz6obpgDQGcFmaJgB"
+})
+headers = {
+  'authorization': 'Bearer token',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+**Response**
+
+```json
+{
+  "code": 1000,
+  "msg": "OK",
+  "data": {
+    "create_time": 1712113285547,
+    "from": 3,
+    "input_text": "Hello, this is Akool's AI platform!",
+    "rate": "100%",
+    "voice_model_id": "65e813955daad44c2267380d",
+    "url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3",
+    "status": 3,
+    "_id": "660cc685b0950b5bf9bf4b55"
+  }
+}
+```
+
+### Create Avatar Video
+
+```
+POST https://openapi.akool.com/api/open/v3/avatar/createVideo
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                                     |
+| ------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
+
+**Body Attributes**
+
+| Parameter                      | Type     | Value | Description                                                                                                                                                                                                                                                                               |
+| ------------------------------ | -------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data                           | [Object] |       |                                                                                                                                                                                                                                                                                           |
+| [data].width                   | Number   | 1920  | Set the output video width                                                                                                                                                                                                                                                                |
+| [data].height                  | Number   | 1080  | Set the output video height                                                                                                                                                                                                                                                               |
+| [data].duration                | Number   |       | Set the output video duration (in milliseconds)                                                                                                                                                                                                                                           |
+| [data].voice                   | Object   |       | Set Video Sound                                                                                                                                                                                                                                                                           |
+| [data].voice.input_text        | String   |       | Set video and audio content                                                                                                                                                                                                                                                               |
+| [data].voice.voice_id          | String   |       | Set the selection model for video sound, You can get 【voice_id】 from [https://openapi.akool.com/api/open/v3/avatar/list](https://openapi.akool.com/api/open/v3/avatar/list) api, If you want to use the specified audio for cloning, you need to pass in voice_URL instead of voice_id. |
+| [data].voice.voice_url         | String   |       | When you want to use the specified audio for cloning, you first need to call[ https://openapi.akool.com/api/open/v3/audio/create ](https://openapi.akool.com/api/open/v3/audio/create)API for audio cloning, you will obtain the field 【url】 and pass it here                           |
+| [data].voice.rate              | String   |       | Voice speaking speed【field value ranges（0%-100%）】                                                                                                                                                                                                                                     |
+| [data].voice.type              | Number   |       | Voice type: default is 1                                                                                                                                                                                                                                                                  |
+| [data].elements                | [Object] |       | Collection of elements passed in in the video                                                                                                                                                                                                                                             |
+| [data].[elements].url          | [Object] |       | Link to element                                                                                                                                                                                                                                                                           |
+| [data].[elements].scale_x      | [Object] |       | Horizontal scaling ratio, range of values (0-1)                                                                                                                                                                                                                                           |
+| [data].[elements].scale_y      | [Object] |       | Vertical scaling ratio, range of values (0-1)                                                                                                                                                                                                                                             |
+| [data].[elements].offset_x     | [Object] |       | Horizontal offset of the upper left corner of the element from the video setting area (in pixels)                                                                                                                                                                                         |
+| [data].[elements].offset_y     | [Object] |       | Vertical offset of the upper left corner of the element from the video setting area (in pixels)                                                                                                                                                                                           |
+| [data].[elements].type         | [Object] |       | Element type（avatar、image、video）                                                                                                                                                                                                                                                      |
+| [data].[elements].layer_number | Number   |       | Element hierarchy, with higher levels displayed above                                                                                                                                                                                                                                     |
+| [data].[elements].avatar_id    | Number   |       | You use the avatar_id of the avatar model, and you can get from [https://openapi.akool.com/api/open/v3/avatar/list](https://openapi.akool.com/api/open/v3/avatar/list) api, you will obtain the field 【avatar_id】 and pass it here                                                      |
+| [data].ratio                   | String   |       | Video ratio，default "16:9"                                                                                                                                                                                                                                                               |
+| [data].background              | String   |       | Video background color, default white (# ffffff)                                                                                                                                                                                                                                          |
+| [data].avatarFrom              | Number   |       | You use the avatar from of the avatar model, and you can get from [https://openapi.akool.com/api/open/v3/avatar/list](https://openapi.akool.com/api/open/v3/avatar/list) api, you will obtain the field 【from】 and pass it here                                                         |
+| webhookUrl                     | String   |       | Callback url address based on HTTP request.                                                                                                                                                                                                                                               |
+
+**Response Attributes**
+
+| Parameter | Type   | Value                                  | Description                                                                                                                                         |
+| --------- | ------ | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code      | int    | 1000                                   | Interface returns business status code (1000:success)                                                                                               |
+| msg       | String |                                        | Interface returns status information                                                                                                                |
+| data      | Object | `{ _id:"", video_status:3, video:"" }` | `_id`: Interface returns data status: the status of video: 【1:queueing, 2:processing, 3:completed, 4:failed】, `video`: the url of Generated video |
+
+**Example**
+
+**Body**
+
+```json
+{
+  "data": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "duration": 18938.75,
+      "voice": {
+        "input_text": "Hello, this is Akool's AI platform!",
+        "voice_id": "pqHfZKP75CvOlQylNhV4",
+        "rate": "100%",
+        "type": 1,
+        "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3"
+      },
+      "elements": [
+        {
+          "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/avatar/elements/landscape_furniture1.png",
+          "scale_x": 1,
+          "scale_y": 1,
+          "offset_x": 960,
+          "offset_y": 540,
+          "type": "image",
+          "layer_number": 1
+        },
+        {
+          "id": "avatar",
+          "url": "https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786295159-e450163c-7b50-4714-9763-ed7a0e09d8b2-8298.png",
+          "scale_x": 1,
+          "scale_y": 1,
+          "offset_x": 1380,
+          "offset_y": 540,
+          "type": "avatar",
+          "avatar_id": "Barbara_in_Black_suit_20231121",
+          "layer_number": 3
+        }
+      ],
+      "ratio": "16:9",
+      "background": "#ffffff",
+      "avatarFrom": 3
+    }
+  ],
+  "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
+}
+```
+
+**Request**
+
+<CodeGroup>
+
+```bash cURL
+curl --location 'https://openapi.akool.com/api/open/v3/avatar/createVideo' \
+--header 'Authorization: Bearer token' \
+--header 'Content-Type: application/json' \
+--data '{
+    "data": [{
+    "width": 1920,
+    "height": 1080,
+    "duration": 18938.75,
+    "voice": {
+      "input_text": "Hello, this is Akool's AI platform!",
+      "voice_id": "pqHfZKP75CvOlQylNhV4",
+      "rate": "100%",
+      "type": 1,
+      "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3"
+    },
+    "elements": [
+      {
+        "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/avatar/elements/landscape_furniture1.png",
+        "scale_x": 1,
+        "scale_y": 1,
+        "offset_x": 960,
+        "offset_y": 540,
+        "type": "image",
+        "layer_number": 1
+      },
+      {
+        "id": "avatar",
+        "url": "https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786295159-e450163c-7b50-4714-9763-ed7a0e09d8b2-8298.png",
+        "scale_x": 1,
+        "scale_y": 1,
+        "offset_x": 1380,
+        "offset_y": 540,
+        "type": "avatar",
+        "avatar_id": "Barbara_in_Black_suit_20231121",
+        "layer_number": 3
+      }
+    ],
+    "ratio": "16:9",
+    "background": "#ffffff",
+    "avatarFrom": 3
+  }],
+  "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"
+}'
+```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"data\": [{\n        \"width\": 1920,\n        \"height\": 1080,\n        \"duration\": 18938.75,\n        \"voice\": {\n            \"input_text\": \"Hello, this is Akool's AI platform!\",\n            \"voice_id\": \"pNInz6obpgDQGcFmaJgB\",\n            \"rate\": \"100%\",\n         \"type\": 1,\n            \"voice_url\": \"https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3\"\n        },\n        \"elements\": [\n            {\n                \"url\": \"https://d11fbe263bhqij.cloudfront.net/agicontent/avatar/elements/landscape_furniture1.png\",\n                \"scale_x\": 1,\n                \"scale_y\": 1,\n                \"offset_x\": 960,\n                \"offset_y\": 540,\n                \"type\": \"image\",\n                \"layer_number\": 1\n            },\n            {\n                \"url\": \"https://drz0f01yeq1cx.cloudfront.net/1712025503602-leijun-2s.mp4\",\n                \"scale_x\": 0.5,\n                \"scale_y\": 0.5,\n                \"offset_x\": 1457.22,\n                \"offset_y\": 72.91,\n                \"type\": \"video\",\n                \"layer_number\": 2\n            },\n            {\n                \"id\": \"avatar\",\n                \"url\": \"https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786295159-e450163c-7b50-4714-9763-ed7a0e09d8b2-8298.png\",\n                \"scale_x\": 1,\n                \"scale_y\": 1,\n                \"offset_x\": 1380,\n                \"offset_y\": 540,\n                \"type\": \"avatar\",\n                \"avatar_id\": \"Barbara_in_Black_suit_20231121\",\n                \"layer_number\": 3\n            }\n        ],\n        \"ratio\": \"16:9\",\n        \"avatarFrom\": 2\n    }],\n    \"webhookUrl\":\"http://localhost:3007/api/open/v3/test/webhook\" \n}");
+Request request = new Request.Builder()
+  .url("https://openapi.akool.com/api/open/v3/avatar/createVideo")
+  .method("POST", body)
+  .addHeader("Authorization", "Bearer token")
+  .addHeader("Content-Type", "application/json")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer token");
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  data: [
+    {
+      width: 1920,
+      height: 1080,
+      duration: 18938.75,
+      voice: {
+        input_text: "Hello, this is Akool's AI platform!",
+        voice_id: "pqHfZKP75CvOlQylNhV4",
+        rate: "100%",
+        type: 1,
+        voice_url:
+          "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3",
+      },
+      elements: [
+        {
+          url: "https://d11fbe263bhqij.cloudfront.net/agicontent/avatar/elements/landscape_furniture1.png",
+          scale_x: 1,
+          scale_y: 1,
+          offset_x: 960,
+          offset_y: 540,
+          type: "image",
+          layer_number: 1,
+        },
+        {
+          id: "avatar",
+          url: "https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786295159-e450163c-7b50-4714-9763-ed7a0e09d8b2-8298.png",
+          scale_x: 1,
+          scale_y: 1,
+          offset_x: 1380,
+          offset_y: 540,
+          type: "avatar",
+          avatar_id: "Barbara_in_Black_suit_20231121",
+          layer_number: 3,
+        },
+      ],
+      ratio: "16:9",
+      background: "#ffffff",
+      avatarFrom: 3,
+    },
+  ],
+  webhookUrl: "http://localhost:3007/api/open/v3/test/webhook",
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow",
+};
+
+fetch(
+  "https://openapi.akool.com/api/open/v3/avatar/createVideo",
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => 'Bearer token',
+  'Content-Type' => 'application/json'
+];
+$body = '{
+  "data": [{
+    "width": 1920,
+    "height": 1080,
+    "duration": 18938.75,
+    "voice": {
+      "input_text": "Hello, this is Akool's AI platform!",
+      "voice_id": "pqHfZKP75CvOlQylNhV4",
+      "type": 1,
+      "rate": "100%",
+      "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3"
+    },
+    "elements": [
+      {
+        "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/avatar/elements/landscape_furniture1.png",
+        "scale_x": 1,
+        "scale_y": 1,
+        "offset_x": 960,
+        "offset_y": 540,
+        "type": "image",
+        "layer_number": 1
+      },
+      {
+        "id": "avatar",
+        "url": "https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786295159-e450163c-7b50-4714-9763-ed7a0e09d8b2-8298.png",
+        "scale_x": 1,
+        "scale_y": 1,
+        "offset_x": 1380,
+        "offset_y": 540,
+        "type": "avatar",
+        "avatar_id": "Barbara_in_Black_suit_20231121",
+        "layer_number": 3
+      }
+    ],
+    "ratio": "16:9",
+    "background": "#ffffff",
+    "avatarFrom": 3
+  }],
+  "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"
+}';
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/content/video/createbytalkingphoto', $headers, $body);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+import json
+
+url = "https://openapi.akool.com/api/open/v3/avatar/createVideoo"
+
+payload = json.dumps({
+  "data": [{
+    "width": 1920,
+    "height": 1080,
+    "duration": 18938.75,
+    "voice": {
+      "input_text": "Hello, this is Akool's AI platform!",
+      "voice_id": "pqHfZKP75CvOlQylNhV4",
+      "type": 1,
+      "rate": "100%",
+      "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3"
+    },
+    "elements": [
+      {
+        "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/avatar/elements/landscape_furniture1.png",
+        "scale_x": 1,
+        "scale_y": 1,
+        "offset_x": 960,
+        "offset_y": 540,
+        "type": "image",
+        "layer_number": 1
+      },
+      {
+        "id": "avatar",
+        "url": "https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786295159-e450163c-7b50-4714-9763-ed7a0e09d8b2-8298.png",
+        "scale_x": 1,
+        "scale_y": 1,
+        "offset_x": 1380,
+        "offset_y": 540,
+        "type": "avatar",
+        "avatar_id": "Barbara_in_Black_suit_20231121",
+        "layer_number": 3
+      }
+    ],
+    "ratio": "16:9",
+    "background": "#ffffff",
+    "avatarFrom": 3
+  }],
+  "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"
+})
+headers = {
+  'Authorization': 'Bearer token',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+**Response**
+
+```json
+{
+  "code": 1000, // API code
+  "msg": "OK",
+  "data": {
+    "create_time": 1712048827995,
+    "uid": 100004,
+    "type": 4,
+    "from": 2,
+    "ratio": "16:9",
+    "background": "",
+    "offset_x": 0,
+    "offset_y": 0,
+    "scale": 1,
+    "faceswap_quality": 2,
+    "video_sub_status": 1,
+    "video_status": 1,
+    "video_lock_duration": 1515,
+    "deduction_lock_duration": 1520,
+    "external_video": "",
+    "video": "",
+    "storage_loc": 1,
+    "source_data": {
+      "data": [{
+        "width": 1920,
+        "height": 1080,
+        "duration": 18938.75,
+        "voice": {
+          "input_text": "Hello, this is Akool's AI platform!",
+          "voice_id": "pqHfZKP75CvOlQylNhV4",
+          "rate": "100%",
+          "type": 1,
+          "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3"
+        },
+        "elements": [
+          {
+            "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/avatar/elements/landscape_furniture1.png",
+            "scale_x": 1,
+            "scale_y": 1,
+            "offset_x": 960,
+            "offset_y": 540,
+            "type": "image",
+            "layer_number": 1
+          },
+          {
+            "id": "avatar",
+            "url": "https://drz0f01yeq1cx.cloudfront.net/avatar/thumbnail/1700786295159-e450163c-7b50-4714-9763-ed7a0e09d8b2-8298.png",
+            "scale_x": 1,
+            "scale_y": 1,
+            "offset_x": 1380,
+            "offset_y": 540,
+            "type": "avatar",
+            "avatar_id": "Barbara_in_Black_suit_20231121",
+            "layer_number": 3
+          }
+        ],
+        "ratio": "16:9",
+        "background": "#ffffff",
+        "avatarFrom": 3
+      }],
+      "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"
+      "userId": "64ddd5fa3a458a183f71f665"
+    },
+    "_id": "660bcabb6e2f6d2bba67f1fd",
+    "__v": 0
+  }
+}
+```
+
+### Upload User Voice Audio
+
+```
+POST https://openapi.akool.com/api/open/v3/Voice/create
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                                     |
+| ------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
+
+**Query Attributes**
+
+| **Parameter** | **Type** | **Value** | **Description**                                                                                                                                                      |
+| ------------- | -------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| preview       | String   |           | You need to pass in a link to the voice audio, and If the uploaded audio is noisy or has a short duration, this will affect the effect of subsequent TTS generation. |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                            | **Description**                                                                                                                                                                                                                                              |
+| ------------- | -------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| code          | int      | 1000                                 | Interface returns business status code (1000:success)                                                                                                                                                                                                        |
+| msg           | String   | OK                                   | Interface returns status information                                                                                                                                                                                                                         |
+| data          | Object   | `{ voice_id:1, _id:"", preview:"" }` | `voice_id`: The only Id of voice's resources, You'll see this later in the [https://openapi.akool.com/api/open/v3/avatar/createVideo](https://openapi.akool.com/api/open/v3/audio/create) api, `preview`: avatar resource url, `_id`: Interface returns data |
+
+**Example**
+
+**Request**
+
+<CodeGroup>
+
+```bash cURL
+curl --location 'https://openapi.akool.com/api/open/v3/voice/create' \
+--header 'Authorization: Bearer token'
+--data '{
+    "preview": "https://drz0f01yeq1cx.cloudfront.net/1712560668073-f71567db-a70b-4267-a966-f30fbf0c471b-8252.mp3"
+}'
+```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"preview\": \"https://drz0f01yeq1cx.cloudfront.net/1712560668073-f71567db-a70b-4267-a966-f30fbf0c471b-8252.mp3\"  \n}");
+Request request = new Request.Builder()
+  .url("https://openapi.akool.com/api/open/v3/voice/create")
+  .method("POST", body)
+  .addHeader("Authorization", "Bearer token")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer token");
+const raw = JSON.stringify({
+  preview: "https://drz0f01yeq1cx.cloudfront.net/1712560668073-f71567db-a70b-4267-a966-f30fbf0c471b-8252.mp3",
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow",
+};
+
+fetch("https://openapi.akool.com/api/open/v3/voice/create", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => 'Bearer token'
+];
+$body = '{
+  "preview": "https://drz0f01yeq1cx.cloudfront.net/1712560668073-f71567db-a70b-4267-a966-f30fbf0c471b-8252.mp3"
+}';
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/voice/create', $headers, $body);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+import json
+
+url = "https://openapi.akool.com/api/open/v3/voice/create"
+
+payload = json.dumps({
+  "preview": "https://drz0f01yeq1cx.cloudfront.net/1712560668073-f71567db-a70b-4267-a966-f30fbf0c471b-8252.mp3"
+})
+headers = {
+  'Authorization': 'Bearer token'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+**Response**
+
+```json
+{
+  "code": 1000,
+  "msg": "OK",
+  "data": {
+    "uid": 100010,
+    "from": 4,
+    "type": 1,
+    "voice_id": "c8f5cb1b6502421ea9eb0eceba86827b",
+    "thumbnailUrl": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264_thumbnail.png",
+    "name": "avatar-voice-bcae336851ed4f69bda0c04d4a30bfdc",
+    "preview": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264.mp4",
+    "create_time": 1712568704462,
+    "_id": "6613b9805237fd02529258b0",
+    "__v": 0
+  }
+}
+```
+
+### Upload User Avatar
+
+```
+POST https://openapi.akool.com/api/open/v3/avatar/create
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                                                                     |
+| ------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
+
+**Query Attributes**
+
+| **Parameter** | **Type** | **Value** | **Description**                                                                                                                          |
+| ------------- | -------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| url           | String   |           | You need to pass in a link to the video with a face here, and if the uploaded video does not have a face, the generated result may fail. |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                         | **Description**                                                                                                                                                                                                                                                  |
+| ------------- | -------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code          | int      | 1000                              | Interface returns business status code (1000:success)                                                                                                                                                                                                            |
+| msg           | String   | OK                                | Interface returns status information                                                                                                                                                                                                                             |
+| data          | Object   | `{ avatar_id:1, _id:"", url:"" }` | `avatar_id`: The only Id of Avatar's resources, You'll see this later in the [https://openapi.akool.com/api/open/v3/avatar/createVideo](https://openapi.akool.com/api/open/v3/avatar/createVideo) api, `url`: avatar resource url, `_id`: Interface returns data |
+
+**Example**
+
+**Request**
+
+<CodeGroup>
+
+```bash cURL
+curl --location 'https://openapi.akool.com/api/open/v3/avatar/create' \
+--header 'Authorization: Bearer token'
+--data '{
+    "url": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264.mp4"
+}'
+```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"url\": \"https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264.mp4\"  \n}");
+Request request = new Request.Builder()
+  .url("https://openapi.akool.com/api/open/v3/avatar/create")
+  .method("POST", body)
+  .addHeader("Authorization", "Bearer token")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer token");
+const raw = JSON.stringify({
+  url: "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264.mp4",
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow",
+};
+
+fetch("https://openapi.akool.com/api/open/v3/avatar/create", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => 'Bearer token'
+];
+$body = '{
+  "url": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264.mp4"
+}';
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/avatar/create', $headers, $body);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+import json
+
+url = "https://openapi.akool.com/api/open/v3/avatar/create"
+
+payload = json.dumps({
+  "url": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264.mp4"
+})
+headers = {
+  'Authorization': 'Bearer token'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+**Response**
+
+```json
+{
+  "code": 1000,
+  "msg": "OK",
+  "data": {
+    "create_time": 1711961926527,
+    "type": 1,
+    "avatar_id": "12345678",
+    "url": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264.mp4",
+    "from": 3,
+    "source_url": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264_thumbnail.png",
+    "thumbnailUrl": "https://drz0f01yeq1cx.cloudfront.net/1712112185548-1711069651876-final_with_audio_h264_thumbnail.png",
+    "_id": "660a77467f3141382851e41b"
+  }
+}
+```
+
+### Get Video Info Result
+
+```
+GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
+```
+
+**Request Headers**
+
+| **Parameter** | **Value**    | **Description**                                                                                                |
+| ------------- | ------------ | -------------------------------------------------------------------------------------------------------------- |
+| Authorization | Bearer token | Your API Key used for request authorization. You can get from https://open.akool.com/api/open/v3/getToken api. |
+
+**Query Attributes**
+
+| **Parameter**  | **Type** | **Value** | **Description**                                                                                                                       |
+| -------------- | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| video_model_id | String   | NULL      | video db id: You can get it based on the `_id` field returned by https://open.akool.com/api/open/v3/content/video/createbytranslate . |
+
+**Response Attributes**
+
+| **Parameter** | **Type** | **Value**                              | **Description**                                                                                                                                         |
+| ------------- | -------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| code          | int      | 1000                                   | Interface returns business status code(1000:success)                                                                                                    |
+| msg           | String   | OK                                     | Interface returns status information                                                                                                                    |
+| data          | Object   | `{ video_status:1, _id:"", video:"" }` | video_status: the status of video：【1:queueing, 2:processing, 3:completed, 4:failed】 video: Generated video resource url \_id: Interface returns data |
+
+**Example**
+
+**Request**
+
+<CodeGroup>
+
+```bash cURL
+curl --location 'http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b' \
+--header 'Authorization: Bearer token'
+```
+
+```java Java
+OkHttpClient client = new OkHttpClient().newBuilder()
+  .build();
+MediaType mediaType = MediaType.parse("text/plain");
+RequestBody body = RequestBody.create(mediaType, "");
+Request request = new Request.Builder()
+  .url("http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b")
+  .method("GET", body)
+  .addHeader("Authorization", "Bearer token")
+  .build();
+Response response = client.newCall(request).execute();
+```
+
+```js Javascript
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer token");
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow",
+};
+
+fetch(
+  "http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b",
+  requestOptions
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+```
+
+```php PHP
+<?php
+$client = new Client();
+$headers = [
+  'Authorization' => 'Bearer token'
+];
+$request = new Request('GET', 'http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+```
+
+```python Python
+import requests
+
+url = "http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b"
+
+payload = {}
+headers = {
+  'Authorization': 'Bearer token'
+}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
+```
+
+</CodeGroup>
+
+**Response**
+
+```json
+{
+  "code": 1000,
+  "msg": "OK",
+  "data": {
+    "faceswap_quality": 2,
+    "storage_loc": 1,
+    "_id": "64dd92c1f0b6684651e90e09",
+    "create_time": 1692242625334,
+    "uid": 378337,
+    "type": 2,
+    "from": 1,
+    "video_id": "0acfed62e24f4cfd8801c9e846347b1d",
+    "video_lock_duration": 7.91,
+    "deduction_lock_duration": 10,
+    "video_status": 2, // current status of video： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the video translation details.）】
+    "external_video": "",
+    "video": "" //  Generated video resource url
+  }
+}
+```
