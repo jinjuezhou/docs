@@ -1,13 +1,13 @@
 ---
 title: 'Image Generate'
-description: 'Display inline code and code blocks'
+description: ''
 ---
 
 
 ### Text to image / Image to image
 
 ```
-POST https://open.akool.com/api/open/v3/content/image/createbyimagine
+POST https://openapi.akool.com/api/open/v3/content/image/createbyimagine
 ```
 
 **Request Headers**
@@ -50,7 +50,7 @@ POST https://open.akool.com/api/open/v3/content/image/createbyimagine
     
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/content/image/createbyimagine' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/image/createbyimagine' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -67,7 +67,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\n    \"prompt\": \"Sun Wukong is surrounded by heavenly soldiers and generals\", \n    \"source_image\": \"https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png\", \n    \"webhookUrl\":\"http://localhost:3007/image/webhook\" \n}\n");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/content/image/createbyimagine")
+  .url("https://openapi.akool.com/api/open/v3/content/image/createbyimagine")
   .method("POST", body)
   .addHeader("Authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -93,7 +93,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/content/image/createbyimagine", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/content/image/createbyimagine", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -111,7 +111,7 @@ $body = '{
   "source_image": "https://drz0f01yeq1cx.cloudfront.net/1708333063911-9cbe39b7-3c5f-4a35-894c-359a6cbb76c3-3283.png",
   "webhookUrl": "http://localhost:3007/image/webhook"
 }';
-$request = new Request('POST', 'https://open.akool.com/api/open/v3/content/image/createbyimagine', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/content/image/createbyimagine', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -120,7 +120,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "https://open.akool.com/api/open/v3/content/image/createbyimagine"
+url = "https://openapi.akool.com/api/open/v3/content/image/createbyimagine"
 
 payload = json.dumps({
   "prompt": "Sun Wukong is surrounded by heavenly soldiers and generals",
@@ -167,7 +167,7 @@ print(response.text)
 ### Generate 4K or variations
 
 ```
-POST https://open.akool.com/api/open/v3/content/image/createbybutton
+POST https://openapi.akool.com/api/open/v3/content/image/createbybutton
 ```
 
 **Request Headers**
@@ -180,8 +180,8 @@ POST https://open.akool.com/api/open/v3/content/image/createbybutton
 
 | **Parameter** | **Type** | **Value** | **Description**                                                                                                                                                                                                                                                                                                                                     |
 |---------------|----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| _id           | String   |           | the image`_id` you had generated, you can got it from https://open.akool.com/api/open/v3/content/image/createbyimagine                                                                                                                                                                                                                              |
-| button        | String   |           | the type of operation you want to perform, You can get the field（display_buttons） value from https://open.akool.com/api/open/v3/content/image/infobyid 【U(1-4): Generate a single 4k image based on the corresponding serial number original image， V(1-4)：Generate a single variant image based on the corresponding serial number original image】 |
+| _id           | String   |           | the image`_id` you had generated, you can got it from https://openapi.akool.com/api/open/v3/content/image/createbyimagine                                                                                                                                                                                                                              |
+| button        | String   |           | the type of operation you want to perform, You can get the field（display_buttons） value from https://openapi.akool.com/api/open/v3/content/image/infobyid 【U(1-4): Generate a single 4k image based on the corresponding serial number original image， V(1-4)：Generate a single variant image based on the corresponding serial number original image】 |
 | webhookUrl    | String   |           | Callback url address based on HTTP request                                                                                                                                                                                                                                                                                                          |
 
 **Response Attributes**
@@ -323,7 +323,7 @@ print(response.text)
 ### Get  Image Result image info
 
 ```
-GET https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217
+GET https://openapi.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217
 ```
 
 **Request Headers**
@@ -336,7 +336,7 @@ GET https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_i
 
 | **Parameter**  | **Type** | **Value** | **Description**                                                                                                                                                                                           |
 |----------------|----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| image_model_id | String   |           | image db id：You can get it based on the `_id` field returned by [https://open.akool.com/api/open/v3/content/image/createbyimagine](https://open.akool.com/api/open/v3/content/image/createbyimagine) api. |
+| image_model_id | String   |           | image db id：You can get it based on the `_id` field returned by [https://openapi.akool.com/api/open/v3/content/image/createbyimagine](https://openapi.akool.com/api/open/v3/content/image/createbyimagine) api. |
 
 **Response Attributes**
 
@@ -353,7 +353,7 @@ GET https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_i
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -363,7 +363,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217")
+  .url("https://openapi.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
@@ -380,7 +380,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -392,7 +392,7 @@ $client = new Client();
 $headers = [
   'Authorization' => 'Bearer token'
 ];
-$request = new Request('GET', 'https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217', $headers);
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -400,7 +400,7 @@ echo $res->getBody();
 ```python Python
 import requests
 
-url = "https://open.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217"
+url = "https://openapi.akool.com/api/open/v3/content/image/infobymodelid?image_model_id=64dd838cf0b6684651e90217"
 
 payload = {}
 headers = {

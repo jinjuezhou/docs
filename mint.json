@@ -30,7 +30,7 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://aaa-95.mintlify.app"
+      "url": "/"
     },
     {
       "name": "Blog",
@@ -48,12 +48,12 @@
     {
       "group": "AI Tools Suite",
       "pages": [
-        "ai-tools-suite/image-generate",
         "ai-tools-suite/video-translation",
         "ai-tools-suite/talking-photo",
         "ai-tools-suite/avatar",
         "ai-tools-suite/faceswap",
         "ai-tools-suite/reage",
+        "ai-tools-suite/background-change",
         "ai-tools-suite/webhook"
       ]
     }

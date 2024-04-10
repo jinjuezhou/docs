@@ -1,129 +1,12 @@
 ---
-title: 'Video Translation'
+title: 'lipSync'
 description: ''
 ---
 
-
-### Get Language List Result
-
-```
-GET https://openapi.akool.com/api/open/v3/language/list
-```
-
-**Request Headers**
-
-| **Parameter** | **Value**    | **Description**                                                                                                                                               |
-|---------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Authorization | Bearer token | Your API Key used for request authorization. You can get from [https://openapi.akool.com/api/open/v3/getToken](https://openapi.akool.com/api/open/v3/getToken) api. |
-
-**Response Attributes**
-
-| **Parameter** | **Type** | **Value**                           | **Description**                                                                                                          |
-|---------------|----------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| code          | int      | 1000                                | Interface returns business status code(1000:success)                                                                     |
-| msg           | String   | OK                                  | Interface returns status information                                                                                     |
-| data         | Array    | `{ lang_list:[ {"lang_code":"en", "lang_name": "English" } ]}` | lang_code:   Lang code supported by video translation |
-
-**Example**
-
-**Request**
-
-<CodeGroup>
-
-```bash cURL
-curl --location 'https://openapi.akool.com/api/open/v3/language/list' \
---header 'Authorization: Bearer {{Authorization}}'
-```
-
-```java Java
-OkHttpClient client = new OkHttpClient().newBuilder()
-  .build();
-MediaType mediaType = MediaType.parse("text/plain");
-RequestBody body = RequestBody.create(mediaType, "");
-Request request = new Request.Builder()
-  .url("https://openapi.akool.com/api/open/v3/language/list")
-  .method("GET", body)
-  .addHeader("Authorization", "Bearer {{Authorization}}")
-  .build();
-Response response = client.newCall(request).execute();
-```
-
-```js Javascript
-const myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer {{Authorization}}");
-
-const requestOptions = {
-  method: "GET",
-  headers: myHeaders,
-  redirect: "follow"
-};
-
-fetch("https://openapi.akool.com/api/open/v3/language/list", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error));
-```
-
-```php PHP 
-<?php
-$client = new Client();
-$headers = [
-  'Authorization' => '{{Authorization}}'
-];
-$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/language/list', $headers);
-$res = $client->sendAsync($request)->wait();
-echo $res->getBody();
-```
-
-```python Python 
-import requests
-
-url = "https://openapi.akool.com/api/open/v3/language/list"
-
-payload = {}
-headers = {
-  'Authorization': 'Bearer {{Authorization}}'
-}
-
-response = requests.request("GET", url, headers=headers, data=payload)
-
-print(response.text)
-```
-
-</CodeGroup>
-
-**Response**
-
-```json
-{
-    "code": 1000,
-    "msg": "OK",
-    "data": {
-        "lang_list": [
-            {
-                "lang_code": "en",
-                "lang_name": "English",
-                "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/video/icons/En.png"
-            },
-            {
-                "lang_code": "fr",
-                "lang_name": "French",
-                "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/video/icons/Fr.png"
-            },
-            {
-                "lang_code": "zh",
-                "lang_name": "Chinese (Simplified)",
-                "url": "https://d11fbe263bhqij.cloudfront.net/agicontent/video/icons/Zh.png"
-            }
-    ]
-}
-```
-
-
-### Create video translation
+### Create lipSync
 
 ```
-POST https://openapi.akool.com/api/open/v3/content/video/createbytranslate
+POST https://openapi.akool.com/api/open/v3/content/video/lipsync
 ```
 
 **Request Headers**
@@ -136,9 +19,8 @@ POST https://openapi.akool.com/api/open/v3/content/video/createbytranslate
 
 | **Parameter** | **Type** | **Value**  | **Description**                                                              |
 |---------------|----------|------------|------------------------------------------------------------------------------|
-| url           | String   |            | The video url address you want to translate.                                 |
-| language      | String   |            | The language you want to translate into.                                     |
-| lipsync       | Boolean  | true/false | Get synchronized mouth movements with the audio track in a translated video. |
+| video_url     | String   |            | The video url address you want to libsync.                                 |
+| audio_url     | String   |            | resource address of the  audio.                                     |
 | webhookUrl    | String   |            | Callback url address based on HTTP request.                                  |
 
 **Response Attributes**
@@ -167,7 +49,7 @@ POST https://openapi.akool.com/api/open/v3/content/video/createbytranslate
 <CodeGroup>
 
 ```bash cURL
-curl --location 'https://openapi.akool.com/api/open/v3/content/video/createbytranslate' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/video/lipsync' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
