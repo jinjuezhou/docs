@@ -163,7 +163,7 @@ print(response.text)
         "webhookUrl": "https://openapitest.akool.com/api/open/v3/test/webhook",
         "task_id": "66160b3ee3ef778679dfd30f",
         "lipsync": true,
-        "_id": "66160b3e9dfc997ac289034f",
+        "_id": "66160f989dfc997ac289037b",
         "__v": 0
     }
 }
@@ -172,7 +172,7 @@ print(response.text)
 ### Get  Video Info Result
 
 ```
-GET https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
+GET https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=66160f989dfc997ac289037b
 ```
 
 **Request Headers**
@@ -202,7 +202,7 @@ GET https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_mode
 <CodeGroup>
 
 ```bash cURL
-curl --location 'http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b' \
+curl --location 'http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=66160f989dfc997ac289037b' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -212,7 +212,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b")
+  .url("http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=66160f989dfc997ac289037b")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
