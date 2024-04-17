@@ -157,7 +157,8 @@ POST https://openapi.akool.com/api/open/v3/audio/create
 {
     "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
     "voice_id": "LcfcDJNUP1GQjkzn1xUU",
-    "rate": "100%"
+    "rate": "100%",
+   "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook" 
 }
 ```
 
@@ -172,7 +173,8 @@ curl --location 'https://openapi.akool.com/api/open/v3/audio/create' \
 --data '{
     "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
     "voice_id": "LcfcDJNUP1GQjkzn1xUU",
-    "rate": "100%"
+    "rate": "100%",
+    "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook" 
 }'
 ```
 
@@ -180,7 +182,7 @@ curl --location 'https://openapi.akool.com/api/open/v3/audio/create' \
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\r\n    \"input_text\": \"Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from\",\r\n    \"voice_id\": \"LcfcDJNUP1GQjkzn1xUU\",\r\n    \"rate\": \"100%\"\r\n}");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"input_text\": \"Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from\",\n    \"voice_id\": \"LcfcDJNUP1GQjkzn1xUU\",\n    \"rate\": \"100%\",\n    \"webhookUrl\":\"http://localhost:3007/api/open/v3/test/webhook\" \n}");
 Request request = new Request.Builder()
   .url("https://openapi.akool.com/api/open/v3/audio/create")
   .method("POST", body)
@@ -198,7 +200,8 @@ myHeaders.append("Content-Type", "application/json");
 const raw = JSON.stringify({
   "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
   "voice_id": "LcfcDJNUP1GQjkzn1xUU",
-  "rate": "100%"
+  "rate": "100%",
+  "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 });
 
 const requestOptions = {
@@ -224,11 +227,13 @@ $headers = [
 $body = '{
   "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
   "voice_id": "LcfcDJNUP1GQjkzn1xUU",
-  "rate": "100%"
+  "rate": "100%",
+  "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 }';
 $request = new Request('POST', 'https://openapi.akool.com/api/open/v3/audio/create', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
+
 
 ```
 
@@ -241,7 +246,8 @@ url = "https://openapi.akool.com/api/open/v3/audio/create"
 payload = json.dumps({
   "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
   "voice_id": "LcfcDJNUP1GQjkzn1xUU",
-  "rate": "100%"
+  "rate": "100%",
+  "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 })
 headers = {
   'authorization': 'Bearer token',
@@ -251,6 +257,7 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
+
 ```
 
 </CodeGroup>
