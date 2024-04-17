@@ -465,7 +465,7 @@ GET https://openapi.akool.com/api/open/v3/audio/infobymodelid?audio_model_id=65f
 
 | **Parameter**  | **Type** | **Value** | **Description**                                                                                                                   |
 |----------------|----------|-----------|-----------------------------------------------------------------------------------------------------------------------------------|
-| audio_model_id | String   |           | audio db id：You can get it based on the `_id` field returned by https://openapi.akool.com/api/open/audio/create or https://openapi.akool.com/api/open/v3/audio/clone api. |
+| audio_model_id | String   |           | audio db id：You can get it based on the `_id` field returned by https://openapi.akool.com/api/open/v3/audio/create or https://openapi.akool.com/api/open/v3/audio/clone api. |
 
 **Response Attributes**
 
@@ -473,7 +473,7 @@ GET https://openapi.akool.com/api/open/v3/audio/infobymodelid?audio_model_id=65f
 |---------------|----------|----------------------|-------------------------------------------------------------------------------------------------------------|
 | code          | int      | 1000                 | Interface returns business status code(1000:success)                                                        |
 | msg           | String   | OK                   | Interface returns status information                                                                        |
-| data          | Object   | `{status:1,_id:"",}` | status:  the status of audio：【1:queueing, 2:processing, 3:completed, 4:failed】`_id`: Interface returns data |
+| data          | Object   | `{status:1,_id:"", url:""}` | status:  the status of audio：【1:queueing, 2:processing, 3:completed, 4:failed】`_id`: Interface returns data.url: Generated audio resource url |
 
 **Example**
 
@@ -558,7 +558,7 @@ print(response.text)
         "input_text": "Choose from male and female voices for various use-cases. For tailored options, refer to voice settings or read further.There are both male and female voices to choose from",
         "rate": "100%",
         "voice_model_id": "65e980d7af040969db5be854",
-        "url": "https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3",
+        "url": "https://drz0f01yeq1cx.cloudfront.net/1710752141387-e7867802-0a92-41d4-b899-9bfb23144929-4946.mp3", // Generated audio resource url
         "status": 3,   // current status of audio： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the audio details.）】
         "__v": 0
     }
