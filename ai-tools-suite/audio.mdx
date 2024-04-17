@@ -324,8 +324,8 @@ POST https://openapi.akool.com/api/open/v3/audio/clone
 {
   "input_text": "Hello, this is Akool's AI platform!",
   "rate": "100%",
-  "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1712113284451-fe73dd6c-f981-46df-ba73-0b9d85c1be9c-8195.mp3",
-  "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"   
+  "voice_url":"https://drz0f01yeq1cx.cloudfront.net/1713168740392-4022bc91-5502-4e79-a66a-8c45b31792e4-4867.mp3",
+  "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"  
 }
 ```
 
@@ -338,9 +338,10 @@ curl --location 'https://openapi.akool.com/api/open/v3/audio/clone' \
 --header 'authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
-  "input_text": "Hello, this is Akool's AI platform!",
+  "input_text": "Hello, this is Akool'\''s AI platform!",
   "rate": "100%",
-  "voice_id": "pNInz6obpgDQGcFmaJgB"
+  "voice_url":"https://drz0f01yeq1cx.cloudfront.net/1713168740392-4022bc91-5502-4e79-a66a-8c45b31792e4-4867.mp3",
+  "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"  
 }'
 ```
 
@@ -348,7 +349,7 @@ curl --location 'https://openapi.akool.com/api/open/v3/audio/clone' \
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\n    \"input_text\": \"Hello, this is Akool's AI platform!\",\n    \"rate\": \"100%\",\n    \"voice_id\": \"pNInz6obpgDQGcFmaJgB\"\n}");
+RequestBody body = RequestBody.create(mediaType, "{\n  \"input_text\": \"Hello, this is Akool's AI platform!\",\n  \"rate\": \"100%\",\n  \"voice_url\":\"https://drz0f01yeq1cx.cloudfront.net/1713168740392-4022bc91-5502-4e79-a66a-8c45b31792e4-4867.mp3\",\n  \"webhookUrl\":\"http://localhost:3007/api/open/v3/test/webhook\"  \n}");
 Request request = new Request.Builder()
   .url("https://openapi.akool.com/api/open/v3/audio/clone")
   .method("POST", body)
@@ -364,16 +365,17 @@ myHeaders.append("authorization", "Bearer token");
 myHeaders.append("Content-Type", "application/json");
 
 const raw = JSON.stringify({
-  input_text: "Hello, this is Akool's AI platform!",
-  rate: "100%",
-  voice_id: "pNInz6obpgDQGcFmaJgB",
+  "input_text": "Hello, this is Akool's AI platform!",
+  "rate": "100%",
+  "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1713168740392-4022bc91-5502-4e79-a66a-8c45b31792e4-4867.mp3",
+  "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 });
 
 const requestOptions = {
   method: "POST",
   headers: myHeaders,
   body: raw,
-  redirect: "follow",
+  redirect: "follow"
 };
 
 fetch("https://openapi.akool.com/api/open/v3/audio/clone", requestOptions)
@@ -392,11 +394,13 @@ $headers = [
 $body = '{
   "input_text": "Hello, this is Akool's AI platform!",
   "rate": "100%",
-  "voice_id": "pNInz6obpgDQGcFmaJgB"
+  "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1713168740392-4022bc91-5502-4e79-a66a-8c45b31792e4-4867.mp3",
+  "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 }';
 $request = new Request('POST', 'https://openapi.akool.com/api/open/v3/audio/clone', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
+
 
 ```
 
@@ -409,7 +413,8 @@ url = "https://openapi.akool.com/api/open/v3/audio/clone"
 payload = json.dumps({
   "input_text": "Hello, this is Akool's AI platform!",
   "rate": "100%",
-  "voice_id": "pNInz6obpgDQGcFmaJgB"
+  "voice_url": "https://drz0f01yeq1cx.cloudfront.net/1713168740392-4022bc91-5502-4e79-a66a-8c45b31792e4-4867.mp3",
+  "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 })
 headers = {
   'authorization': 'Bearer token',
@@ -419,6 +424,7 @@ headers = {
 response = requests.request("POST", url, headers=headers, data=payload)
 
 print(response.text)
+
 ```
 
 </CodeGroup>
