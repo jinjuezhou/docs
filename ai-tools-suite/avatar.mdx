@@ -552,7 +552,7 @@ print(response.text)
 ### Get Video Info
 
 ```
-GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
+GET https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64dd838cf0b6684651e90217
 ```
 
 **Request Headers**
@@ -565,7 +565,7 @@ GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_i
 
 | **Parameter**  | **Type** | **Value** | **Description**                                                                                                                       |
 | -------------- | -------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| video_model_id | String   | NULL      | video db id: You can get it based on the `_id` field returned by https://open.akool.com/api/open/v3/content/video/createbytranslate . |
+| video_model_id | String   | NULL      | video db id: You can get it based on the `_id` field returned by https://openapi.akool.com/api/open/v3/avatar/createVideo . |
 
 **Response Attributes**
 
@@ -582,7 +582,7 @@ GET https://open.akool.com/api/open/v3/content/video/infobymodelid?video_model_i
 <CodeGroup>
 
 ```bash cURL
-curl --location 'http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -592,7 +592,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b")
+  .url("https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
@@ -610,7 +610,7 @@ const requestOptions = {
 };
 
 fetch(
-  "http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b",
+  "https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b",
   requestOptions
 )
   .then((response) => response.text())
@@ -624,7 +624,7 @@ $client = new Client();
 $headers = [
   'Authorization' => 'Bearer token'
 ];
-$request = new Request('GET', 'http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b', $headers);
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -632,7 +632,7 @@ echo $res->getBody();
 ```python Python
 import requests
 
-url = "http://open.akool.com/api/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b"
+url = "https://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b"
 
 payload = {}
 headers = {
