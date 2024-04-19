@@ -50,6 +50,7 @@
       "pages": [
         "ai-tools-suite/faceswap",
         "ai-tools-suite/reage",
+         "ai-tools-suite/audio",
         "ai-tools-suite/video-translation",
         "ai-tools-suite/talking-photo",
         "ai-tools-suite/avatar",
