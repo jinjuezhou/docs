@@ -439,4 +439,17 @@ print(response.text)
     }
 }
 ```
+**Response Code Description**
 
+<Note> Please note that if the value of the response code is not equal to 1000, the request is failed or wrong</Note>
+| **Parameter** | **Value** | **Description**                                      |
+|---------------|-----------|------------------------------------------------------|
+| code          | 1000      | Success |
+| code          | 1003      | Parameter error  or Parameter can not be empty |
+| code          | 1008      | The content you get does not exist  |
+| code          | 1009      | You do not have permission to operate  |
+| code          | 1010      | You can not operate this content  |
+| code          | 1101      | Invalid authorization or The request token has expired  |
+| code          | 1102      | Authorization cannot be empty  |
+| code          | 1108      | image generate error,please try again later  |
+| code          | 1200      | The account has been banned  |
