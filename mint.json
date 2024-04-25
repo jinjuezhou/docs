@@ -56,6 +56,7 @@
         "ai-tools-suite/avatar",
         "ai-tools-suite/background-change",
         "ai-tools-suite/lip-sync",
+         "ai-tools-suite/image-generate",
         "ai-tools-suite/webhook"
       ]
     }
