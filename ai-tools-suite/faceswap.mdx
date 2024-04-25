@@ -273,7 +273,7 @@ POST https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo
 <CodeGroup>
 
 ```bash cURL
-curl --location 'http://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo' \
+curl --location 'https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo' \
 --header 'Authorization: Bearer token' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -301,7 +301,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("application/json");
 RequestBody body = RequestBody.create(mediaType, "{\n    \"sourceImage\": [    \n        {\n            \"path\": \"https://d21ksh0k4smeql.cloudfront.net/crop_1705475757658-3362-0-1705475757797-3713.png\",   \n            \"opts\": \"239,364:386,366:317,472:266,539\"   \n        }\n    ],\n    \"targetImage\": [    \n        {\n            \"path\": \"https://d21ksh0k4smeql.cloudfront.net/crop_1705479323786-0321-0-1705479323896-7695.png\",   \n            \"opts\": \"176,259:243,259:209,303:183,328\" \n        }\n    ],\n    \"modifyVideo\": \"https://d21ksh0k4smeql.cloudfront.net/avatar_01-1705479314627-0092.mp4\",    \n    \"webhookUrl\":\"http://localhost:3007/api/webhook2\" \n\n}");
 Request request = new Request.Builder()
-  .url("http://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo")
+  .url("https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo")
   .method("POST", body)
   .addHeader("Authorization", "Bearer token")
   .addHeader("Content-Type", "application/json")
@@ -338,7 +338,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -367,7 +367,7 @@ $body = '{
   "modifyVideo": "https://d21ksh0k4smeql.cloudfront.net/avatar_01-1705479314627-0092.mp4",
   "webhookUrl": "http://localhost:3007/api/webhook2"
 }';
-$request = new Request('POST', 'http://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo', $headers, $body);
+$request = new Request('POST', 'https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo', $headers, $body);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
 ```
@@ -376,7 +376,7 @@ echo $res->getBody();
 import requests
 import json
 
-url = "http://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo"
+url = "https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo"
 
 payload = json.dumps({
   "sourceImage": [
