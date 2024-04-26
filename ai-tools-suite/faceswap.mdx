@@ -21,7 +21,7 @@ POST https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyimage
 |---------------|----------|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | sourceImage   | Array    | `[{path:"",opts:""}]` | A collection of faces in the original image(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in the original image.opts: Key information of faces detected in original pictures(You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts) |
 | targetImage   | Array    | `[{path:"",opts:""}]` | Replacement target image information.(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in target images.opts: Key information of the face detected in the target image(You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts)          |
-| face_enhance  | Int      | 0 or 1                | Whether facial enhancement: 1 means open， 0 means close                                                                                                                                                                                                                                                                                                                                     |
+| face_enhance  | Int      | 0 or 1                | Whether facial enhancement: 1 means open， 0 means close                                            |
 | modifyImage   | String   |                       | Modify the link address of the image                                                                                                                                                                                                                                                                                                                                                        |
 | webhookUrl    | String   |                       | Callback url address based on HTTP request                                                                                                                                                                                                                                                                                                                                                  |
 
@@ -232,6 +232,7 @@ POST https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo
 |---------------|----------|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | sourceImage   | Array    | `[{path:"",opts:""}]` | A collection of faces in the original video:sourceImage means that you need to change it to the link collection of the face you need. You need to pass your image through the https://sg3.akool.com/detect interface. Obtain the link and key point data and fill them here, and ensure that they correspond to the order of the targetImage. You need to pay attention to that each picture in the sourceImage must be a single face, otherwise the face change may fail. (Each array element is an object, and the object contains 2 properties, path:Links to faces detected in the original image. opts: Key information of faces detected in original pictures【You can get it through the face https://sg3.akool.com/detect API, You can get the landmarks_str value returned by the api interface as the value of opts) |
 | targetImage   | Array    | `[{path:"",opts:""}]` | Replacement target image information： targetImage represents the collection of faces after face detection using modifyImage. When the original image has multiple faces, here is the image link and key point data of each face. You need to pass https://sg3.akool.com/detect interface to obtain data.(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in target images. opts: Key information of the face detected in the target image【You can get it through the face https://sg3.akool.com/detect API, You can get the landmarks_str value returned by the api interface as the value of opts)                                                                                                                                                                       |
+| face_enhance  | Int      | 0 or 1                | Whether facial enhancement: 1 means open， 0 means close                                            |
 | modifyVideo   | String   |                       | modifyImage represents the original image you need to change the face                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | webhookUrl    | String   |                       | Callback url address based on HTTP request                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
@@ -261,6 +262,7 @@ POST https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyvideo
             "opts": "176,259:243,259:209,303:183,328" // Key information of the face detected in the target image【You can get it through the face https://sg3.akool.com/detect API,You only need to enter the first 4 items of the content array of the landmarks field of the returned data, and concatenate them into a string through ":"， like this: ["1622,759","2149,776","1869,1085","1875,1345", "0,0", "0,0"] to "1622,759:2149,776:1869,1085:1875,1345"】
         }
     ],
+    "face_enhance":0,
     "modifyVideo": "https://d21ksh0k4smeql.cloudfront.net/avatar_01-1705479314627-0092.mp4",    // modifyImage represents the original image you need to change the face;
     "webhookUrl":"http://localhost:3007/api/webhook2" // Callback url address based on HTTP request
 
@@ -289,6 +291,7 @@ curl --location 'https://openapi.akool.com/api/open/v3/faceswap/highquality/spec
             "opts": "176,259:243,259:209,303:183,328"
         }
     ],
+    "face_enhance": 0,
     "modifyVideo": "https://d21ksh0k4smeql.cloudfront.net/avatar_01-1705479314627-0092.mp4",
     "webhookUrl":"http://localhost:3007/api/webhook2"
 
@@ -327,6 +330,7 @@ const raw = JSON.stringify({
       "opts": "176,259:243,259:209,303:183,328"
     }
   ],
+ "face_enhance": 0,
   "modifyVideo": "https://d21ksh0k4smeql.cloudfront.net/avatar_01-1705479314627-0092.mp4",
   "webhookUrl": "http://localhost:3007/api/webhook2"
 });
@@ -364,6 +368,7 @@ $body = '{
       "opts": "176,259:243,259:209,303:183,328"
     }
   ],
+ "face_enhance": 0,
   "modifyVideo": "https://d21ksh0k4smeql.cloudfront.net/avatar_01-1705479314627-0092.mp4",
   "webhookUrl": "http://localhost:3007/api/webhook2"
 }';
@@ -391,6 +396,7 @@ payload = json.dumps({
       "opts": "176,259:243,259:209,303:183,328"
     }
   ],
+ "face_enhance": 0,
   "modifyVideo": "https://d21ksh0k4smeql.cloudfront.net/avatar_01-1705479314627-0092.mp4",
   "webhookUrl": "http://localhost:3007/api/webhook2"
 })
