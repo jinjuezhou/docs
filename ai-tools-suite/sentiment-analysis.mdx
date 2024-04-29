@@ -182,7 +182,7 @@ GET https://openapi.akool.com/api/open/v3/content/analysis/infobyid?_id=662df792
 |---------------|----------|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
 | code          | int      | 1000                                   | Interface returns business status code(1000:success)                                                                                                 |
 | msg           | String   | OK                                     | Interface returns status information                                                                                                                 |
-| data          | Object   | `{ video_status:1, _id:"", result:"" }` | video_status: the status of video：【1:queueing, 2:processing, 3:completed, 4:failed】 result:  sentiment analysis result _id: Interface returns data |
+| data          | Object   | `{ video_status:1, _id:"", result:"" }` | video_status: the status of video：【1:queueing, 2:processing, 3:completed, 4:failed】 result:  sentiment analysis result【"POSITIVE", "NEGATIVE"】 _id: Interface returns data |
 
 **Example**
 
@@ -191,7 +191,7 @@ GET https://openapi.akool.com/api/open/v3/content/analysis/infobyid?_id=662df792
 <CodeGroup>
 
 ```bash cURL
-curl --location 'http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b' \
+curl --location 'https://openapi.akool.com/api/open/v3/content/analysis/infobyid?_id=662e20b93baa7aa53169a325' \
 --header 'Authorization: Bearer token'
 ```
 
@@ -201,7 +201,7 @@ OkHttpClient client = new OkHttpClient().newBuilder()
 MediaType mediaType = MediaType.parse("text/plain");
 RequestBody body = RequestBody.create(mediaType, "");
 Request request = new Request.Builder()
-  .url("http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b")
+  .url("https://openapi.akool.com/api/open/v3/content/analysis/infobyid?_id=662e20b93baa7aa53169a325")
   .method("GET", body)
   .addHeader("Authorization", "Bearer token")
   .build();
@@ -218,7 +218,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b", requestOptions)
+fetch("https://openapi.akool.com/api/open/v3/content/analysis/infobyid?_id=662e20b93baa7aa53169a325", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
@@ -226,19 +226,21 @@ fetch("http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_mo
 
 ```php PHP 
 <?php
+<?php
 $client = new Client();
 $headers = [
   'Authorization' => 'Bearer token'
 ];
-$request = new Request('GET', 'http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b', $headers);
+$request = new Request('GET', 'https://openapi.akool.com/api/open/v3/content/analysis/infobyid?_id=662e20b93baa7aa53169a325', $headers);
 $res = $client->sendAsync($request)->wait();
 echo $res->getBody();
+
 ```
 
 ```python Python 
 import requests
 
-url = "http://openapi.akool.com/api/open/v3/content/video/infobymodelid?video_model_id=64b126c4a680e8edea44f02b"
+url = "https://openapi.akool.com/api/open/v3/content/analysis/infobyid?_id=662e20b93baa7aa53169a325"
 
 payload = {}
 headers = {
@@ -248,6 +250,7 @@ headers = {
 response = requests.request("GET", url, headers=headers, data=payload)
 
 print(response.text)
+
 ```
   
 </CodeGroup>
@@ -256,24 +259,15 @@ print(response.text)
 **Response**
 
 ```json
+
 {
     "code": 1000,
     "msg": "OK",
     "data": {
-        "faceswap_quality": 2,
-        "storage_loc": 1,   
-        "_id": "64dd92c1f0b6684651e90e09",  
-        "create_time": 1692242625334,   
-        "uid": 378337,  
-        "type": 2,  
-        "from": 1,  
-        "video_id": "0acfed62e24f4cfd8801c9e846347b1d", 
-        "video_lock_duration": 7.91,    
-        "deduction_lock_duration": 10, 
-        "video_status": 2,  // current status of video： 【1：queueing（The requested operation is being processed），2：processing（The requested operation is being processing），3：completed（The request operation has been processed successfully），4：failed（The request operation processing failed, the reason for the failure can be viewed in the video translation details.）】
-        "external_video": "", 
-         "lipsync_video_url":"", //if you set lipsync = true, you can use lipsync_video_url
-        "video": ""  //  Generated video resource url
+        "_id": "662e20b93baa7aa53169a325",
+        "uid": 100002,
+        "status": 3,
+        "result": "POSITIVE"
     }
 }
 ```
@@ -293,8 +287,3 @@ print(response.text)
 | code          | 1201      | create audio error, please try again later  |
 | code          | 1202      | The same video cannot be translated lipSync in the same language more than 1 times  |
 | code          | 1203      | video should be with audio  |
-| code          | 1204      | Your video duration is exceed 60s!  |
-| code          | 1205      | Create video error, please try again later  |
-| code          | 1207      | The video you are using exceeds the size limit allowed by the system by 300M  |
-| code          | 1209      | Please upload a video in another encoding format  |
-| code          | 1210      | The video you are using exceeds the value allowed by the system by 30fp  |
