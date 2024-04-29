@@ -21,6 +21,7 @@ POST https://openapi.akool.com/api/open/v3/content/analysis/sentiment
 |---------------|----------|------------|------------------------------------------------------------------------------|
 | url           | String   |            | The video url or image url.                                 |
 | type          | Number   |            | 1: image  2:video                                 |
+| language          | String   |         | When type=2, the language of the video needs to be provided。 Supplying the input language in ISO-639-1 format                              |
 | webhookUrl    | String   |            | Callback url address based on HTTP request.                                  |
 
 **Response Attributes**
