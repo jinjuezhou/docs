@@ -143,6 +143,7 @@ POST https://openapi.akool.com/api/open/v3/content/video/createbytranslate
 | source_language | String   |            | The original language of the video.                                                             |
 | language        | String   |            | The language you want to translate into.                                                        |
 | lipsync         | Boolean  | true/false | Get synchronized mouth movements with the audio track in a translated video.                    |
+| merge_interval  | Number   | 1          | The segmentation interval of video translation, the default is 1 second.                        |
 | face_enhance    | Boolean  | true/false | Whether to facial process the translated video, this parameter only works when lipsync is true. |
 | webhookUrl      | String   |            | Callback url address based on HTTP request.                                                     |
 
@@ -164,6 +165,7 @@ POST https://openapi.akool.com/api/open/v3/content/video/createbytranslate
   "language": "hi", // The language you want to translate into
   "source_language": "zh", // The original language of the video.
   "lipsync": true, //  Get synchronized mouth movements with the audio track in a translated video.
+  "merge_interval": 1,
   "face_enhance": true, //  Whether to facial process the translated video, this parameter only works when lipsync is true.
   "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook" //  Callback url address based on HTTP request
 }
@@ -183,6 +185,7 @@ curl --location 'https://openapi.akool.com/api/open/v3/content/video/createbytra
     "language": "hi",
     "face_enhance": true,
     "lipsync":true,
+    "merge_interval": 1,
     "webhookUrl":"http://localhost:3007/api/open/v3/test/webhook"
 }'
 ```
@@ -191,7 +194,7 @@ curl --location 'https://openapi.akool.com/api/open/v3/content/video/createbytra
 OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "{\n    \"url\": \"https://drz0f01yeq1cx.cloudfront.net/1710470596011-facebook.mp4\", \n    \"language\": \"hi\", \n    \"source_language\": \"zh\", \n    \"lipsync\":true, \n    \"face_enhance\":true, \n    \"webhookUrl\":\"http://localhost:3007/api/open/v3/test/webhook\"   \n}");
+RequestBody body = RequestBody.create(mediaType, "{\n    \"url\": \"https://drz0f01yeq1cx.cloudfront.net/1710470596011-facebook.mp4\", \n    \"language\": \"hi\", \n    \"source_language\": \"zh\", \n    \"lipsync\":true, \n   \"merge_interval\":1, \n    \"face_enhance\":true, \n    \"webhookUrl\":\"http://localhost:3007/api/open/v3/test/webhook\"   \n}");
 Request request = new Request.Builder()
   .url("https://openapi.akool.com/api/open/v3/content/video/createbytranslate")
   .method("POST", body)
@@ -212,6 +215,7 @@ const raw = JSON.stringify({
   source_language: "zh",
   face_enhance: true,
   lipsync: true,
+  merge_interval: 1,
   webhookUrl: "http://localhost:3007/api/open/v3/test/webhook",
 });
 
@@ -244,6 +248,7 @@ $body = '{
   "source_language": "zh",
   "face_enhance": true,
   "lipsync": true,
+  "merge_interval": 1,
   "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 }';
 $request = new Request('POST', 'https://openapi.akool.com/api/open/v3/content/video/createbytranslate', $headers, $body);
@@ -263,6 +268,7 @@ payload = json.dumps({
   "source_language": "zh",
   "face_enhance": true,
   "lipsync": true,
+  "merge_interval": 1,
   "webhookUrl": "http://localhost:3007/api/open/v3/test/webhook"
 })
 headers = {
