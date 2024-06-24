@@ -19,8 +19,8 @@ POST https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyimage
 
 | **Parameter** | **Type** | **Value**             | **Description**                                                                                                                                                                                                                                                                                                                                                                             |
 |---------------|----------|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| sourceImage   | Array    | `[{path:"",opts:""}]` | A collection of faces in the original image(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in the original image.opts: Key information of faces detected in original pictures(You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts) |
-| targetImage   | Array    | `[{path:"",opts:""}]` | Replacement target image information.(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in target images.opts: Key information of the face detected in the target image(You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts)          |
+| targetImage   | Array    | `[{path:"",opts:""}]` | A collection of faces in the original image(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in the original image.opts: Key information of faces detected in original pictures(You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts) |
+| sourceImage   | Array    | `[{path:"",opts:""}]` | Replacement target image information.(Each array element is an object, and the object contains 2 properties, path:Links to faces detected in target images.opts: Key information of the face detected in the target image(You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts)          |
 | face_enhance  | Int      | 0 or 1                | Whether facial enhancement: 1 means open， 0 means close                                            |
 | modifyImage   | String   |                       | Modify the link address of the image                                                                                                                                                                                                                                                                                                                                                        |
 | webhookUrl    | String   |                       | Callback url address based on HTTP request                                                                                                                                                                                                                                                                                                                                                  |
@@ -39,13 +39,13 @@ POST https://openapi.akool.com/api/open/v3/faceswap/highquality/specifyimage
 
 ```json
 {
-    "sourceImage": [    // A collection of faces in the original image
+    "targetImage": [    // A collection of faces in the original image
         {
             "path": "https://d21ksh0k4smeql.cloudfront.net/crop_1694593694387-4562-0-1694593694575-0526.png", // Links to faces detected in the original image
             "opts": "262,175:363,175:313,215:272,279" // Key information of faces detected in original pictures【You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts
         }
     ],
-    "targetImage": [    // Replacement target image information
+    "sourceImage": [    // Replacement target image information
         {
             "path": "https://d21ksh0k4smeql.cloudfront.net/crop_1705462509874-9254-0-1705462510015-9261.png",  // Links to faces detected in target images
             "opts": "239,364:386,366:317,472:266,539"   // Key information of the face detected in the target image【You can get it through the face https://sg3.akool.com/detect API,You can get the landmarks_str value returned by the api interface as the value of opts
